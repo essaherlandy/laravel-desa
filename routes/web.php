@@ -36,5 +36,15 @@ Route::namespace('Admin')->group(function(){
         Route::get('/slider-beranda','WebController@sliderBeranda')->name('dashboard.admin.slider-beranda');
         Route::post('/slider-beranda-store','WebController@sliderStore')->name('dashboard.admin.slider-beranda-store');
         Route::post('/update-slider-beranda/{id}','WebController@sliderUpdate')->name('dashboard.admin.slider-beranda-update');
+        Route::get('/slider-beranda/delete/{id}', 'WebController@sliderDelete')->name('dashboard.admin.slider-beranda-delete');
+        Route::get('/berita','BeritaController@index')->name('dashboard.admin.berita');
+        Route::post('/berita-store','BeritaController@store')->name('dashboard.admin.berita-store');
+        Route::post('/update-berita/{id}','BeritaController@update')->name('dashboard.admin.berita-update');
+        Route::get('/berita/delete/{id}', 'BeritaController@delete')->name('dashboard.admin.berita-delete');
+        Route::get('/kegiatan','KegiatanController@index')->name('dashboard.admin.kegiatan');
+        Route::post('/kegiatan-store','KegiatanController@store')->name('dashboard.admin.kegiatan-store');
+        Route::get('/edit-kegiatan/{id}','KegiatanController@edit')->name('dashboard.admin.edit-kegiatan');
+        Route::post('/update-kegiatan/{id}','KegiatanController@update')->name('dashboard.admin.kegiatan-update');
+        Route::get('/kegiatan/delete/{id}', 'KegiatanController@delete')->name('dashboard.admin.kegiatan-delete');
     });
 });

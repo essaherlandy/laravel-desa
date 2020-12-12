@@ -63,8 +63,8 @@
                     <ul class="nav">
                         <li><a class="nav-link" href="{{route('dashboard.admin.logo')}}">Logo</a></li>
                         <li><a class="nav-link" href="{{route('dashboard.admin.slider-beranda')}}">Slider Beranda</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Berita</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Kegiatan</a></li>
+                        <li><a class="nav-link" href="{{route('dashboard.admin.berita')}}">Berita</a></li>
+                        <li><a class="nav-link" href="{{route('dashboard.admin.kegiatan')}}">Kegiatan</a></li>
                         <li><a class="nav-link" href="layout-top-navigation.html">Produk Olahan</a></li>
                         <li><a class="nav-link" href="layout-top-navigation.html">Sejarah Desa</a></li>
                         <li><a class="nav-link" href="layout-top-navigation.html">Demografi Desa</a></li>

@@ -19,7 +19,14 @@
             <!-- OVERVIEW -->
             <div class="panel panel-headline">
                 <div class="panel-heading pb-0">
-                    <h4>Slider Beranda</h4>
+                    <form action="{{route('dashboard.admin.pengguna')}}" method="GET">
+                        <div class="col-lg-12 row justify-content-between">
+                            <div class="input-group ">
+                                <input type="text" name="search" class="form-control col-lg-10 col-sm-12 mb-2" placeholder="Cari data berdasarkan Nama, email, telepon..." value="@isset($_GET['search']){{$_GET['search']}}@endisset">
+                                <span class="input-group-btn"><input class="btn btn-primary" type="submit" value="CARI"></span>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <hr class="mt-3">
                 @if(session('success'))
@@ -43,67 +50,63 @@
                         </div>
                 @endif 
                 <div class="panel-body">
-                <a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SliderBeranda"><i class="fa fa-plus"></i></a>
+                <a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tambahPengguna"><i class="fa fa-plus"></i> Tambah</a>
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            @if(count($sliderBerandas) > 0)
+                            @if(count($beritas) > 0)
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Konten Background</th>
-                                        <th>Konten Logo</th>
-                                        <th>Konten Text</th>
+                                        <th>Penguna</th>
+                                        <th>Gambar</th>
+                                        <th>Judul Berita</th>
+                                        <th>Isi Berita</th>
                                         <th colspan="2">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no=1;?>
-                                    @foreach($sliderBerandas as $index => $sliderBeranda)
+                                    @foreach($beritas as $index => $berita)
                                     <tr>
-                                        <td>{{$index + $sliderBerandas->firstItem()}}</td>
-                                        <td><img src="{{$sliderBeranda->konten_background}}" style="width:150px;heitgh:150px;"></td>
-                                        @if($sliderBeranda->slider_logo)
-                                        <td><img src="{{$sliderBeranda->slider_logo->first()->konten_logo}}" style="width:150px;heitgh:150px;"></td>
-                                        @else
-                                        <td></td>
-                                        @endif
-                                        <td>{{$sliderBeranda->konten_text}}</td>
+                                        <td>{{$index + $beritas->firstItem()}}</td>
+                                        <td>{{$berita->users->name}}</td>
+                                        <td><img src="{{$berita->gambar}}" style="width:150px;heitgh:150px;"></td>
+                                        <td>{{$berita->judul_berita}}</td>
+                                        <td>{{$berita->isi_berita}}</td>
                                         <td>
-                                            <a type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editPengguna{{$sliderBeranda->id}}"><i class="fa fa-edit"></i></a>
+                                            <a type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editPengguna{{$berita->id}}"><i class="fa fa-edit"></i></a>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="editPengguna{{$sliderBeranda->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="editPengguna{{$berita->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h3 class="modal-title" id="exampleModalLabel">Edit sliderBeranda</h3>
+                                                            <h3 class="modal-title" id="exampleModalLabel">Edit Data Pengguna</h3>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="{{route('dashboard.admin.slider-beranda-update',$sliderBeranda->id)}}" method="POST" enctype="multipart/form-data">
+                                                            <form action="{{route('dashboard.admin.berita-update',$berita->id)}}" method="POST" enctype="multipart/form-data">
                                                                 {{csrf_field()}}
                                                                 <div class="form-group">
-                                                                    <label>Konten Background</label>
-                                                                    <br>
-                                                                    <br>
-                                                                    <img src="{{$sliderBeranda->konten_sliderBeranda_desa}}" style="width:150px;heitgh:150px;">
-                                                                    <br>
-                                                                    <input type="file" name="konten_sliderBeranda_desa" class="form-control">
-                                                                </div>
-                                                                <br>
-                                                                <div class="form-group">
-                                                                    <label>Konten Logo</label>
-                                                                    <br>
-                                                                    <br>
-                                                                    <img src="{{$sliderBeranda->konten_sliderBeranda_kabupaten}}" style="width:150px;heitgh:150px;">
-                                                                    <br>
-                                                                    <input type="file" name="konten_sliderBeranda_kabupaten" class="form-control">
+                                                                    <label>Pengguna</label>
+                                                                    <input type="text" name="id_pengguna" class="form-control" value="{{$berita->users->id}}" readonly>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>Konten Logo</label>
-                                                                    <textarea type="text" name="konten_sliderBeranda_kabupaten" class="form-control"></textarea>
+                                                                    <label>Gambar</label>
+                                                                    <br>
+                                                                    <img src="{{$berita->gambar}}" style="width:250px;heitgh:250px;">
+                                                                    <br>
+                                                                    <input type="file" name="gambar" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Judul Berita</label>
+                                                                    <input type="text" name="judul_berita" class="form-control" value="{{$berita->judul_berita}}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                <label>Isi Berita</label>
+                                                                <textarea id="summernote2" name="isi_berita">{{$berita->isi_berita}}</textarea>
                                                                 </div>
                                                             </div>
                                                         <div class="modal-footer">
@@ -113,17 +116,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <!--Delete-->
-                                            <a type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapusSlider{{$sliderBeranda->id}}"><i class="fa fa-trash"></i></a>
+                                            <!--end modal-->
+                                            <a type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapusPengguna{{$berita->id}}"><i class="fa fa-trash"></i></a>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="hapusSlider{{$sliderBeranda->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="hapusPengguna{{$berita->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-body">
-                                                            <form action="{{route('dashboard.admin.slider-beranda-delete',$sliderBeranda->id)}}" method="get" enctype="multipart/form-data">
+                                                            <form action="{{route('dashboard.admin.berita-delete',$berita->id)}}" method="get" enctype="multipart/form-data">
                                                                 {{csrf_field()}}
-                                                                <h4 class="text-center"><b>Apakah Anda Yakin Ingin Menghapus Data dengan nama <br>{{$sliderBeranda->id}}??</b></h4>
+                                                                <h4 class="text-center"><b>Apakah Anda Yakin Ingin Menghapus Data dengan nama <br>{{$berita->name}}??</b></h4>
                                                             </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -138,8 +140,8 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <a>Total Keseluruhan: <b>{{ $sliderBerandas->total() }}</b></a>
-                            {{$sliderBerandas->appends(request()->query())->links()}}
+                            <a>Total Keseluruhan: <b>{{ $beritas->total() }}</b></a>
+                            {{$beritas->appends(request()->query())->links()}}
                         </div>
                     </div>
                     @else
@@ -155,32 +157,34 @@
     <!-- END MAIN CONTENT -->
 </div>
 
-
 <!-- Modal -->
-<div class="modal fade" id="SliderBeranda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="tambahPengguna" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content modal-lg">
+        <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Tambah Slider Beranda</h3>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Berita</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('dashboard.admin.slider-beranda-store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('dashboard.admin.berita-store')}}" method="POST" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-group">
-                        <label>Konten Background</label>
-                        <input type="file" name="konten_background" class="form-control">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label>Konten Logo</label>
-                        <input type="file" name="konten_logo" class="form-control">
+                        <label>Pengguna</label>
+                        <input type="text" name="id_pengguna" class="form-control" value="{{Auth::user()->id}}" readonly>
                     </div>
                     <div class="form-group">
-                    <label>Konten Text</label>
-                    <textarea id="summernote" name="konten_text"></textarea>
+                        <label>Gambar</label>
+                        <input type="file" name="gambar" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Judul Berita</label>
+                        <input type="text" name="judul_berita" class="form-control">
+                    </div>
+                    <div class="form-group">
+                    <label>Isi Berita</label>
+                    <textarea id="summernote" name="isi_berita"></textarea>
                     </div>
                 </div>
             <div class="modal-footer">
@@ -190,14 +194,26 @@
         </div>
     </div>
 </div>
+<!--end modal-->
 @endsection
-
 @section('footer')
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script>
       $('#summernote').summernote({
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
+      $('#summernote2').summernote({
         tabsize: 2,
         height: 120,
         toolbar: [

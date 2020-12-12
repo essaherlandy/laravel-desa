@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSliderLogoTable extends Migration
+class CreateKegiatanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateSliderLogoTable extends Migration
      */
     public function up()
     {
-        Schema::create('slider_logo', function (Blueprint $table) {
+        Schema::create('kegiatan', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('slider_id');
-            $table->string('konten_logo');
+            $table->string('pelaksana');
+            $table->string('gambar');
+            $table->text('deskripsi');
+            $table->string('nilai_kegiatan');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateSliderLogoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('slider_logo');
+        Schema::dropIfExists('kegiatan');
     }
 }

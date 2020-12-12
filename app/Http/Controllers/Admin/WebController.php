@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Logo;
 use App\SliderBeranda;
+use App\SliderLogo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -61,8 +62,8 @@ class WebController extends Controller
         $pathDB = '/slider/';
         $fileName = NULL;
 
-        if($request->konten_background && $request->konten_logo){
-            $file       = $request->konten_background && $request->konten_logo;
+        if($request->konten_background){
+            $file       = $request->konten_background;
             $extension  = $file->extension();
             $fileName   = $pathDB.strtotime(date('Y-m-d H:i:s')).Str::random(5).'.'.$extension;
         
@@ -71,10 +72,34 @@ class WebController extends Controller
             $sliderBerandas = SliderBeranda::create([
                 'konten_background'    => $fileName,
                 'konten_text'          => $request->konten_text,
-                'konten_logo'          => $fileName
+            ]);
+        }
+
+        $path = public_path().'/slider';
+        $pathDB = '/slider/';
+        $fileName = NULL;
+
+        if($request->konten_logo){
+            $file       = $request->konten_logo;
+            $extension  = $file->extension();
+            $fileName   = $pathDB.strtotime(date('Y-m-d H:i:s')).Str::random(5).'.'.$extension;
+        
+            $file->move($path, $fileName);
+
+            $sliderLogos = SliderLogo::create([
+                'slider_id'             => $sliderBerandas->id,
+                'konten_logo'           => $fileName,
             ]);
         }
         
         return redirect()->route('dashboard.admin.slider-beranda')->with('sukses', 'Data berhasil ditambahkan');
+    }
+
+    public function sliderDelete($id)
+    {
+        $sliderBeranda = SliderBeranda::where('id',$id)->delete();
+        $sliderLogos = SliderLogo::where('slider_id',$id)->delete();
+
+        return redirect()->route('dashboard.admin.slider-beranda')->with('sukses', 'Data berhasil dihapus');
     }
 }
