@@ -1,205 +1,562 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
+<!-- Mirrored from colorlib.com/polygon/admindek/default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 12 Dec 2019 16:07:52 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<!-- /Added by HTTrack -->
+
 <head>
-	<title>Dashboard</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<!-- VENDOR CSS -->
-	<link rel="stylesheet" href="{{asset('temp')}}/assets/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="{{asset('temp')}}/assets/vendor/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="{{asset('temp')}}/assets/vendor/linearicons/style.css">
-	<link rel="stylesheet" href="{{asset('temp')}}/assets/vendor/chartist/css/chartist-custom.css">
-	<!-- MAIN CSS -->
-	<link rel="stylesheet" href="{{asset('temp')}}/assets/css/main.css">
-	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-  <link rel="stylesheet" href="{{asset('temp')}}/assets/css/demo.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-	<!-- GOOGLE FONTS -->
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="{{asset('temp')}}/assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="{{asset('temp')}}/assets/img/favicon.png">
+    <title>Admin Desa</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description"
+        content="Admindek Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+    <meta name="keywords"
+        content="flat ui, admin Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="author" content="colorlib" />
+
+    <link rel="icon" href="https://colorlib.com/polygon/admindek/files/assets/images/favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{{asset('adminity')}}/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="{{asset('adminity')}}/css/waves.min.css" type="text/css" media="all">
+
+    <link rel="stylesheet" type="text/css" href="{{asset('adminity')}}/css/feather.css">
+
+    <link rel="stylesheet" type="text/css" href="{{asset('adminity')}}/css/font-awesome-n.min.css">
+
+    <link rel="stylesheet" href="{{asset('adminity')}}/css/chartist.css" type="text/css" media="all">
+
+    <link rel="stylesheet" type="text/css" href="{{asset('adminity')}}/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('adminity')}}/css/widget.css">
+
+    
+    @yield('styles')
 </head>
 
 <body>
-	<!-- WRAPPER -->
-	<div id="wrapper">
-		<!-- NAVBAR -->
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-btn">
-					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
-				</div>
-				<div id="navbar-menu">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('temp')}}/assets/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<!-- END NAVBAR -->
-		<!-- LEFT SIDEBAR -->
-		<div id="sidebar-nav" class="sidebar">
-			<div class="sidebar-scroll">
-				<nav>
-			@if(auth()->user()->role == 'admin')
-			<ul class="nav">
-              <li>
-                <a href="{{url('admin/dashboard')}}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a>
-              </li>
-              <li class="">
-                <a class="nav-link" href="{{route('dashboard.admin.pengguna')}}"><i class="lnr lnr-user"></i> <span>Pengguna</span></a>
-              </li>
-              <li>
-                  <a href="#subPages" data-toggle="collapse" aria-expanded="true"><i class="fa fa-globe"></i> <span>Pengelolaan Data Web</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                  <div id="subPages" class="collapse" aria-expanded="true" style="">
-                    <ul class="nav">
-                        <li><a class="nav-link" href="{{route('dashboard.admin.logo')}}">Logo</a></li>
-                        <li><a class="nav-link" href="{{route('dashboard.admin.slider-beranda')}}">Slider Beranda</a></li>
-                        <li><a class="nav-link" href="{{route('dashboard.admin.berita')}}">Berita</a></li>
-                        <li><a class="nav-link" href="{{route('dashboard.admin.kegiatan')}}">Kegiatan</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Produk Olahan</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Sejarah Desa</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Demografi Desa</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Visi Misi Desa</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Peta Desa</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Regulasi</a></li>
-                    </ul>
-                  </div>
-              </li>
-              <li>
-                  <a href="#subPages1" data-toggle="collapse" aria-expanded="true"><i class="fa fa-map"></i> <span>Pengelolaan Data Wilayah</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                  <div id="subPages1" class="collapse" aria-expanded="true" style="">
-                    <ul class="nav">
-                        <li><a class="nav-link" href="bootstrap-alert.html">Pengelolaan Provinsi</a></li>
-                        <li><a class="nav-link" href="bootstrap-badge.html">Pengelolaan Kabupaten Kota</a></li>
-                        <li><a class="nav-link" href="bootstrap-breadcrumb.html">Pengelolaan Kecamatan</a></li>
-                        <li><a class="nav-link" href="bootstrap-buttons.html">Pengelolaan Desa</a></li>
-                        <li><a class="nav-link" href="bootstrap-card.html">Pengelolaan Dusun</a></li>
-                        <li><a class="nav-link" href="bootstrap-carousel.html">Pengelolaan RW</a></li>
-                        <li><a class="nav-link" href="bootstrap-collapse.html">Pengelolaan RT</a></li>
-                    </ul>
-                  </div>
-              </li>
-              <li>
-                  <a href="#subPages2" data-toggle="collapse" aria-expanded="true"><i class="fa fa-th-large"></i> <span>Potensi Ekonomi Desa</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                  <div id="subPages2" class="collapse" aria-expanded="true" style="">
-                    <ul class="nav">
-                      <li><a class="nav-link" href="components-article.html">Pertanian</a></li>
-                      <li><a class="nav-link beep beep-sidebar" href="components-avatar.html">Perkebunan</a></li>
-                      <li><a class="nav-link" href="components-chat-box.html">Pertambakan</a></li>
-                      <li><a class="nav-link beep beep-sidebar" href="components-empty-state.html">Sumber Air</a></li>
-                      <li><a class="nav-link" href="components-gallery.html">Sumber Energi</a></li>
-                      <li><a class="nav-link beep beep-sidebar" href="components-hero.html">Potensi Wisata</a></li>
-                    </ul>
-                  </div>
-              </li>
-              <li class="">
-                <a class="nav-link" href="#"><i class="fa fa-star"></i> <span>Perangkat Desa</span></a>
-              </li>
-              <li class="">
-                <a class="nav-link" href="#"><i class="fa fa-envelope"></i> <span>Pesan</span></a>
-              </li>
-          </ul>
-		  @endif
-		  @if(auth()->user()->role == 'pengelola')
-			<ul class="nav">
-              <li>
-                <a href="{{url('admin/dashboard')}}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a>
-              </li>
-              <li class="">
-                <a class="nav-link" href="{{route('dashboard.admin.pengguna')}}"><i class="lnr lnr-user"></i> <span>Pengguna</span></a>
-              </li>
-              <li>
-                  <a href="#subPages" data-toggle="collapse" aria-expanded="true"><i class="fa fa-globe"></i> <span>Pengelolaan Data Web</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                  <div id="subPages" class="collapse" aria-expanded="true" style="">
-                    <ul class="nav">
-                        <li><a class="nav-link" href="">Logo</a></li>
-                        <li><a class="nav-link" href="layout-transparent.html">Slider Beranda</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Berita</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Kegiatan</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Produk Olahan</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Sejarah Desa</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Demografi Desa</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Visi Misi Desa</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Peta Desa</a></li>
-                        <li><a class="nav-link" href="layout-top-navigation.html">Regulasi</a></li>
-                    </ul>
-                  </div>
-              </li>
-              <li>
-                  <a href="#subPages1" data-toggle="collapse" aria-expanded="true"><i class="fa fa-map"></i> <span>Pengelolaan Data Wilayah</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                  <div id="subPages1" class="collapse" aria-expanded="true" style="">
-                    <ul class="nav">
-                        <li><a class="nav-link" href="bootstrap-alert.html">Pengelolaan Provinsi</a></li>
-                        <li><a class="nav-link" href="bootstrap-badge.html">Pengelolaan Kabupaten Kota</a></li>
-                        <li><a class="nav-link" href="bootstrap-breadcrumb.html">Pengelolaan Kecamatan</a></li>
-                        <li><a class="nav-link" href="bootstrap-buttons.html">Pengelolaan Desa</a></li>
-                        <li><a class="nav-link" href="bootstrap-card.html">Pengelolaan Dusun</a></li>
-                        <li><a class="nav-link" href="bootstrap-carousel.html">Pengelolaan RW</a></li>
-                        <li><a class="nav-link" href="bootstrap-collapse.html">Pengelolaan RT</a></li>
-                    </ul>
-                  </div>
-              </li>
-              <li>
-                  <a href="#subPages2" data-toggle="collapse" aria-expanded="true"><i class="fa fa-th-large"></i> <span>Potensi Ekonomi Desa</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                  <div id="subPages2" class="collapse" aria-expanded="true" style="">
-                    <ul class="nav">
-                      <li><a class="nav-link" href="components-article.html">Pertanian</a></li>
-                      <li><a class="nav-link beep beep-sidebar" href="components-avatar.html">Perkebunan</a></li>
-                      <li><a class="nav-link" href="components-chat-box.html">Pertambakan</a></li>
-                      <li><a class="nav-link beep beep-sidebar" href="components-empty-state.html">Sumber Air</a></li>
-                      <li><a class="nav-link" href="components-gallery.html">Sumber Energi</a></li>
-                      <li><a class="nav-link beep beep-sidebar" href="components-hero.html">Potensi Wisata</a></li>
-                    </ul>
-                  </div>
-              </li>
-              <li class="">
-                <a class="nav-link" href="#"><i class="fa fa-star"></i> <span>Perangkat Desa</span></a>
-              </li>
-              <li class="">
-                <a class="nav-link" href="#"><i class="fa fa-envelope"></i> <span>Pesan</span></a>
-              </li>
-          </ul>
-          @endif
-				</nav>
-			</div>
-		</div>
-		<!-- END LEFT SIDEBAR -->
-		<!-- MAIN -->
-		@yield('content')
-		<!-- END MAIN -->
-		<div class="clearfix"></div>
-		<footer>
-			<div class="container-fluid">
-				<p class="copyright">Shared by <i class="fa fa-love"></i><a>BootstrapThemes</a>
-</p>
-			</div>
-		</footer>
-	</div>
-	<!-- END WRAPPER -->
-	<!-- Javascript -->
-	<script src="{{asset('temp')}}/assets/vendor/jquery/jquery.min.js"></script>
-	<script src="{{asset('temp')}}/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="{{asset('temp')}}/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="{{asset('temp')}}/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-	<script src="{{asset('temp')}}/assets/vendor/chartist/js/chartist.min.js"></script>
-  <script src="{{asset('temp')}}/assets/scripts/klorofil-common.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-  <script>
-    @if(Session::has('sukses'))
-      toastr.success('{{Session::get('sukses')}}', 'Sukses')
-    @endif
-  </script>
-  @yield('footer')
+
+    <div class="loader-bg">
+        <div class="loader-bar"></div>
+    </div>
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo">
+                        <a href="index.html">
+                            <img class="img-fluid" src="{{asset('adminity')}}/logodesa/logo_desa.png"
+                                alt="Theme-Logo" />
+                        </a>
+                        <a class="mobile-menu" id="mobile-collapse" href="#!">
+                            <i class="feather icon-menu icon-toggle-right"></i>
+                        </a>
+                        <a class="mobile-options waves-effect waves-light">
+                            <i class="feather icon-more-horizontal"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li>
+                                <a href="#!"
+                                    onclick="if (!window.__cfRLUnblockHandlers) return false; javascript:toggleFullScreen()"
+                                    class="waves-effect waves-light" data-cf-modified-d2d1d6e2f87cbebdf4013b26-="">
+                                    <i class="full-screen feather icon-maximize"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="user-profile header-notification">
+                                <div class="dropdown-primary dropdown">
+                                    <div class="dropdown-toggle" data-toggle="dropdown">
+                                        <span>{{Auth::user()->name}}</span>
+                                        <i class="feather icon-chevron-down"></i>
+                                    </div>
+                                    <ul class="show-notification profile-notification dropdown-menu"
+                                        data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                        <li>
+                                            <a href="/logout">
+                                                <i class="feather icon-log-out"></i> Logout
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    @if(auth()->user()->role == 'admin')
+                    <nav class="pcoded-navbar">
+                        <div class="nav-list">
+                            <div class="pcoded-inner-navbar main-menu">
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class=" ">
+                                        <a href="{{url('admin/dashboard')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-home"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Dashboard</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class=" ">
+                                        <a href="{{route('dashboard.admin.pengguna')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-user"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Pengguna</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="feather icon-globe"></i></span>
+                                            <span class="pcoded-mtext">Pengelolaan Data Web</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.logo')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Logo</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.slider-beranda')}}" class="
+                                                    waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Slider Beranda</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.berita')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Berita</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.kegiatan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Kegiatan</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Produk Olahan</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.sejarah-desa')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Sejarah Desa</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.demografi-desa')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Demografi Desa</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.visi-misi')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Visi dan Misi Desa</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Peta Desa</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Regulasi</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="fa fa-compass"></i></span>
+                                            <span class="pcoded-mtext">Pengelolaan Wilayah</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.provinsi')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Pengelolaan Provinsi</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.kabupaten-kota')}}" class="
+                                                    waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Pengelolaan Kabupaten/Kota</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.kecamatan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Pengelolaan Kecamatan</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.kegiatan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Pengelolaan Desa</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Pengelolaan Dusun</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.sejarah-desa')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Pengelolaan RW</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.demografi-desa')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Pengelolaan RT</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-layers"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Potensi Ekonimi Desa</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="widget-statistic.html" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Statistic</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="widget-data.html" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Data</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="widget-chart.html" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Chart Widget</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class=" ">
+                                        <a href="foo-table.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-star"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Perangkat Desa</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class=" ">
+                                        <a href="foo-table.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="fa fa-envelope"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Pesan</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    @endif
+                    @if(auth()->user()->role == 'pengelola')
+                    <nav class="pcoded-navbar">
+                        <div class="nav-list">
+                            <div class="pcoded-inner-navbar main-menu">
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class=" ">
+                                        <a href="{{url('admin/dashboard')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-home"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Dashboard</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class=" ">
+                                        <a href="{{route('dashboard.admin.pengguna')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-user"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Pengguna</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="feather icon-globe"></i></span>
+                                            <span class="pcoded-mtext">Pengelolaan Data Web</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.logo')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Logo</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.slider-beranda')}}" class="
+                                                    waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Slider Beranda</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.berita')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Berita</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.kegiatan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Kegiatan</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Produk Olahan</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Sejarah Desa</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Demografi Desa</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Visi dan Misi Desa</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Peta Desa</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Regulasi</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="feather icon-compass"></i></span>
+                                            <span class="pcoded-mtext">Pengelolaan Wilayah</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class=" pcoded-hasmenu">
+                                                <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Vertical</span>
+                                                </a>
+                                                <ul class="pcoded-submenu">
+                                                    <li class="">
+                                                        <a href="menu-static.html" class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Static Layout</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="menu-header-fixed.html"
+                                                            class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Header Fixed</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="menu-compact.html" class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Compact</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="menu-sidebar.html" class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Sidebar Fixed</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class=" pcoded-hasmenu">
+                                                <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Horizontal</span>
+                                                </a>
+                                                <ul class="pcoded-submenu">
+                                                    <li class="">
+                                                        <a href="menu-horizontal-static.html" target="_blank"
+                                                            class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Static Layout</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="menu-horizontal-fixed.html" target="_blank"
+                                                            class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Fixed layout</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="menu-horizontal-icon.html" target="_blank"
+                                                            class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Static With Icon</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="menu-horizontal-icon-fixed.html" target="_blank"
+                                                            class="waves-effect waves-dark">
+                                                            <span class="pcoded-mtext">Fixed With Icon</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="">
+                                                <a href="menu-bottom.html" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Bottom Menu</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-layers"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Potensi Ekonimi Desa</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="widget-statistic.html" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Statistic</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="widget-data.html" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Data</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="widget-chart.html" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Chart Widget</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class=" ">
+                                        <a href="foo-table.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-star"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Perangkat Desa</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class=" ">
+                                        <a href="foo-table.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="fa fa-envelope"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Pesan</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    @endif
+                    <div class="pcoded-content">
+                        <div class="page-header card">
+                            <div class="row align-items-end">
+                            </div>
+                        </div>
+
+                        @yield('content')
+                    </div>
+
+                    <div id="styleSelector">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script data-cfasync="false" src="{{asset('adminity')}}/js/email-decode.min.js"></script>
+    <script type="d2d1d6e2f87cbebdf4013b26-text/javascript" src="{{asset('adminity')}}/js/jquery.min.js"></script>
+    <script type="d2d1d6e2f87cbebdf4013b26-text/javascript" src="{{asset('adminity')}}/js/jquery-ui.min.js"></script>
+    <script type="d2d1d6e2f87cbebdf4013b26-text/javascript" src="{{asset('adminity')}}/js/popper.min.js"></script>
+    <script type="d2d1d6e2f87cbebdf4013b26-text/javascript" src="{{asset('adminity')}}/js/bootstrap.min.js"></script>
+
+    <script src="{{asset('adminity')}}/js/waves.min.js" type="d2d1d6e2f87cbebdf4013b26-text/javascript"></script>
+
+    <script type="d2d1d6e2f87cbebdf4013b26-text/javascript" src="{{asset('adminity')}}/js/jquery.slimscroll.js">
+    </script>
+
+    <script src="{{asset('adminity')}}/js/jquery.flot.js" type="d2d1d6e2f87cbebdf4013b26-text/javascript"></script>
+    <script src="{{asset('adminity')}}/js/jquery.flot.categories.js" type="d2d1d6e2f87cbebdf4013b26-text/javascript">
+    </script>
+    <script src="{{asset('adminity')}}/js/curvedlines.js" type="d2d1d6e2f87cbebdf4013b26-text/javascript"></script>
+    <script src="{{asset('adminity')}}/js/jquery.flot.tooltip.min.js" type="d2d1d6e2f87cbebdf4013b26-text/javascript">
+    </script>
+
+    <script src="{{asset('adminity')}}/js/chartist.js" type="d2d1d6e2f87cbebdf4013b26-text/javascript"></script>
+
+    <script src="{{asset('adminity')}}/js/amcharts.js" type="d2d1d6e2f87cbebdf4013b26-text/javascript"></script>
+    <script src="{{asset('adminity')}}/js/serial.js" type="d2d1d6e2f87cbebdf4013b26-text/javascript"></script>
+    <script src="{{asset('adminity')}}/js/light.js" type="d2d1d6e2f87cbebdf4013b26-text/javascript"></script>
+
+    <script src="{{asset('adminity')}}/js/pcoded.min.js" type="d2d1d6e2f87cbebdf4013b26-text/javascript"></script>
+    <script src="{{asset('adminity')}}/js/vertical-layout.min.js" type="d2d1d6e2f87cbebdf4013b26-text/javascript">
+    </script>
+    <script type="d2d1d6e2f87cbebdf4013b26-text/javascript" src="{{asset('adminity')}}/js/custom-dashboard.min.js">
+    </script>
+    <script type="d2d1d6e2f87cbebdf4013b26-text/javascript" src="{{asset('adminity')}}/js/script.min.js"></script>
+    <script src="{{asset('adminity')}}/js/rocket-loader.min.js" data-cf-settings="d2d1d6e2f87cbebdf4013b26-|49"
+        defer=""></script>
+    @yield('footer')
 </body>
 
 </html>

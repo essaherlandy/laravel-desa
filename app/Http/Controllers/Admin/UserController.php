@@ -37,6 +37,11 @@ class UserController extends Controller
         return redirect()->route('dashboard.admin.pengguna')->with('sukses', 'Data berhasil dibuat');
     }
 
+    public function edit(Request $request, $id)
+    {
+        $users = User::where('id',$id)->first();
+        return view('dashboard.admin.edit-pengguna',['users' => $users]);
+    }
     public function update(Request $request, $id)
     {
         $users = User::where('id',$id)->update([

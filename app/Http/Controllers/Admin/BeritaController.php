@@ -78,9 +78,10 @@ class BeritaController extends Controller
      * @param  \App\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function edit(Berita $berita)
+    public function edit(Request $request,$id)
     {
-        //
+        $beritas = Berita::where('id',$id)->first();
+        return view('dashboard.admin.edit-berita',['beritas' => $beritas]);
     }
 
     /**
@@ -119,8 +120,10 @@ class BeritaController extends Controller
      * @param  \App\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Berita $berita)
+    public function delete($id)
     {
-        //
+        $beritas = Berita::where('id',$id)->delete();
+
+        return redirect()->route('dashboard.admin.berita')->with('sukses', 'Data berhasil dihapus');
     }
 }

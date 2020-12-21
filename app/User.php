@@ -40,4 +40,10 @@ class User extends Authenticatable
     public function beritas(){
         return $this->hasMany('App\Berita', 'id_pengguna');
     }
+    public function demografis(){
+        return $this->hasMany('App\Demografi', 'id_pengguna');
+    }
+    public function visi_misi(){
+        return $this->hasMany('App\Visimisi', 'id_pengguna');
+    }
 }

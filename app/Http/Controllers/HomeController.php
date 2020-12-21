@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Berita;
+use App\Kegiatan;
 use App\Logo;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,15 @@ class HomeController extends Controller
     {   
         $logo = Logo::first();
         $beritas = Berita::all();
-        return view('welcome',['logo' => $logo,'beritas' => $beritas]);
+        $kegiatans = Kegiatan::all();
+        $kegiatans = Kegiatan::all();
+        return view('welcome',['logo' => $logo,'beritas' => $beritas,'kegiatans' => $kegiatans]);
+    }
+
+    public function detailKegiatan(Request $request, $slug)
+    {
+        $kegiatans = Kegiatan::where('slug',$slug)->first();
+
+        return view('detail-kegiatan');
     }
 }

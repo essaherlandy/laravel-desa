@@ -29,6 +29,6 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        return redirect('/login')->with('success','Anda berhasil keluar dari sistem');
+        return redirect('/')->with('success','Anda berhasil keluar dari sistem');
     }
 }
