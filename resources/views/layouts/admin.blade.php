@@ -15,7 +15,7 @@
         content="Admindek Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
     <meta name="keywords"
         content="flat ui, admin Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
-    <meta name="author" content="colorlib" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" href="https://colorlib.com/polygon/admindek/files/assets/images/favicon.ico" type="image/x-icon">
 
@@ -23,6 +23,8 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{{asset('adminity')}}/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">  
 
     <link rel="stylesheet" href="{{asset('adminity')}}/css/waves.min.css" type="text/css" media="all">
 
@@ -34,7 +36,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{asset('adminity')}}/css/style.css">
     <link rel="stylesheet" type="text/css" href="{{asset('adminity')}}/css/widget.css">
-
+    
     
     @yield('styles')
 </head>
@@ -104,7 +106,7 @@
                             <div class="pcoded-inner-navbar main-menu">
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class=" ">
-                                        <a href="{{url('admin/dashboard')}}" class="waves-effect waves-dark">
+                                        <a href="{{url('dashboard')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-home"></i>
                                             </span>
@@ -216,19 +218,19 @@
                                                 </a>
                                             </li>
                                             <li class="">
-                                                <a href="{{route('dashboard.admin.kegiatan')}}"
+                                                <a href="{{route('dashboard.admin.desa')}}"
                                                     class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Pengelolaan Desa</span>
                                                 </a>
                                             </li>
                                             <li class="">
-                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
+                                                <a href="{{route('dashboard.admin.dusun')}}"
                                                     class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Pengelolaan Dusun</span>
                                                 </a>
                                             </li>
                                             <li class="">
-                                                <a href="{{route('dashboard.admin.sejarah-desa')}}"
+                                                <a href="{{route('dashboard.admin.rw')}}"
                                                     class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Pengelolaan RW</span>
                                                 </a>
@@ -251,17 +253,32 @@
                                         <ul class="pcoded-submenu">
                                             <li class="">
                                                 <a href="widget-statistic.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Statistic</span>
+                                                    <span class="pcoded-mtext">Pertanian</span>
                                                 </a>
                                             </li>
                                             <li class="">
                                                 <a href="widget-data.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Data</span>
+                                                    <span class="pcoded-mtext">Perkebunan</span>
                                                 </a>
                                             </li>
                                             <li class="">
                                                 <a href="widget-chart.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Chart Widget</span>
+                                                    <span class="pcoded-mtext">Pertambakan</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="widget-chart.html" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Sumber Air</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="widget-chart.html" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Sumber Energi</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="widget-chart.html" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Potensi Wisata</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -297,7 +314,7 @@
                             <div class="pcoded-inner-navbar main-menu">
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class=" ">
-                                        <a href="{{url('admin/dashboard')}}" class="waves-effect waves-dark">
+                                        <a href="{{url('dashboard')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-home"></i>
                                             </span>
@@ -306,152 +323,153 @@
                                     </li>
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
-                                    <li class=" ">
-                                        <a href="{{route('dashboard.admin.pengguna')}}" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-user"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Pengguna</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="pcoded-item pcoded-left-item">
-                                    <li class="pcoded-hasmenu">
+                                <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon"><i class="feather icon-globe"></i></span>
-                                            <span class="pcoded-mtext">Pengelolaan Data Web</span>
+                                            <span class="pcoded-micon">
+                                                <i class="fa fa-list"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Pustaka Kependudukan</span>
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class="">
-                                                <a href="{{route('dashboard.admin.logo')}}"
-                                                    class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Logo</span>
+                                                <a href="{{route('dashboard.pengelola.pendidikan')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Pendidikan</span>
                                                 </a>
                                             </li>
                                             <li class="">
-                                                <a href="{{route('dashboard.admin.slider-beranda')}}" class="
+                                                <a href="{{route('dashboard.pengelola.pekerjaan')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Pekerjaan Umum</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.pekerjaan-penduduk')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Pekerjaan Penduduk</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.golongan-darah')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Golongan Darah</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.agama')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Agama</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.kewarganegaraan')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Kewarganegaraan</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.kompetensi')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Kompetensi</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.status-keluarga')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Status Keluarga</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.status-penduduk')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Status Penduduk</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="fa fa-list"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Pustaka Lainnya</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.pustakalainnya.difabilitas')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Difabilitas</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.pustakalainnya.kode-surat')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Kode Surat</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.pustakalainnya.kontrasepsi')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Kontrasepsi</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.pustakalainnya.status-tinggal')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Status Tinggal</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.pustakalainnya.alasan-pindah')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Alasan Pindah</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.pustakalainnya.jenis-pindah')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Jenis Pindah</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.pustakalainnya.klarifikasi-pindah')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Klasifikasi Pindah</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.pustakalainnya.jabatan')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Jabatan</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="feather icon-book"></i></span>
+                                            <span class="pcoded-mtext">Kependudukan</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.data-keluarga')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Data KK dan Penduduk</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.pisah-keluarga')}}" class="
                                                     waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Slider Beranda</span>
+                                                    <span class="pcoded-mtext">Pisah Kartu Keluarga</span>
                                                 </a>
                                             </li>
                                             <li class="">
                                                 <a href="{{route('dashboard.admin.berita')}}"
                                                     class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Berita</span>
-                                                </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="{{route('dashboard.admin.kegiatan')}}"
-                                                    class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Kegiatan</span>
-                                                </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
-                                                    class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Produk Olahan</span>
-                                                </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
-                                                    class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Sejarah Desa</span>
-                                                </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
-                                                    class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Demografi Desa</span>
-                                                </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
-                                                    class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Visi dan Misi Desa</span>
-                                                </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
-                                                    class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Peta Desa</span>
-                                                </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="{{route('dashboard.admin.produk-olahan')}}"
-                                                    class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Regulasi</span>
+                                                    <span class="pcoded-mtext">Cetak Kartu Keluarga</span>
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon"><i class="feather icon-compass"></i></span>
-                                            <span class="pcoded-mtext">Pengelolaan Wilayah</span>
+                                            <span class="pcoded-micon"><i class="fa fa-desktop"></i></span>
+                                            <span class="pcoded-mtext">Sosial Penduduk</span>
                                         </a>
                                         <ul class="pcoded-submenu">
-                                            <li class=" pcoded-hasmenu">
-                                                <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Vertical</span>
+                                            <li class="">
+                                                <a href="{{route('dashboard.admin.logo')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Penerima Bantuan Sosial</span>
                                                 </a>
-                                                <ul class="pcoded-submenu">
-                                                    <li class="">
-                                                        <a href="menu-static.html" class="waves-effect waves-dark">
-                                                            <span class="pcoded-mtext">Static Layout</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <a href="menu-header-fixed.html"
-                                                            class="waves-effect waves-dark">
-                                                            <span class="pcoded-mtext">Header Fixed</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <a href="menu-compact.html" class="waves-effect waves-dark">
-                                                            <span class="pcoded-mtext">Compact</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <a href="menu-sidebar.html" class="waves-effect waves-dark">
-                                                            <span class="pcoded-mtext">Sidebar Fixed</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class=" pcoded-hasmenu">
-                                                <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Horizontal</span>
-                                                </a>
-                                                <ul class="pcoded-submenu">
-                                                    <li class="">
-                                                        <a href="menu-horizontal-static.html" target="_blank"
-                                                            class="waves-effect waves-dark">
-                                                            <span class="pcoded-mtext">Static Layout</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <a href="menu-horizontal-fixed.html" target="_blank"
-                                                            class="waves-effect waves-dark">
-                                                            <span class="pcoded-mtext">Fixed layout</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <a href="menu-horizontal-icon.html" target="_blank"
-                                                            class="waves-effect waves-dark">
-                                                            <span class="pcoded-mtext">Static With Icon</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="">
-                                                        <a href="menu-horizontal-icon-fixed.html" target="_blank"
-                                                            class="waves-effect waves-dark">
-                                                            <span class="pcoded-mtext">Fixed With Icon</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
                                             </li>
                                             <li class="">
-                                                <a href="menu-bottom.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Bottom Menu</span>
+                                                <a href="{{route('dashboard.admin.slider-beranda')}}" class="
+                                                    waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Bantuan Siswa Miskin</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -459,37 +477,47 @@
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
-                                                <i class="feather icon-layers"></i>
+                                                <i class="fa fa-medkit"></i>
                                             </span>
-                                            <span class="pcoded-mtext">Potensi Ekonimi Desa</span>
+                                            <span class="pcoded-mtext">Kesehatan Penduduk</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.kesehatan.gizi-buruk')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Data Gizi Buruk</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.kesehatan.kehamilan')}}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Data Kehamilan</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="fa fa-newspaper"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Peristiwa</span>
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class="">
                                                 <a href="widget-statistic.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Statistic</span>
+                                                    <span class="pcoded-mtext">Kelahiran</span>
                                                 </a>
                                             </li>
                                             <li class="">
                                                 <a href="widget-data.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Data</span>
+                                                    <span class="pcoded-mtext">Meninggal</span>
                                                 </a>
                                             </li>
                                             <li class="">
-                                                <a href="widget-chart.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Chart Widget</span>
+                                                <a href="widget-statistic.html" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Pindah Penduduk</span>
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
-                                </ul>
-                                <ul class="pcoded-item pcoded-left-item">
-                                    <li class=" ">
-                                        <a href="foo-table.html" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-star"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Perangkat Desa</span>
-                                        </a>
                                     </li>
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
@@ -498,7 +526,17 @@
                                             <span class="pcoded-micon">
                                                 <i class="fa fa-envelope"></i>
                                             </span>
-                                            <span class="pcoded-mtext">Pesan</span>
+                                            <span class="pcoded-mtext">Surat Menyurat</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class=" ">
+                                        <a href="foo-table.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="fa fa-search"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Pencarian Pintar</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -525,9 +563,13 @@
 
 
     <script data-cfasync="false" src="{{asset('adminity')}}/js/email-decode.min.js"></script>
-    <script type="d2d1d6e2f87cbebdf4013b26-text/javascript" src="{{asset('adminity')}}/js/jquery.min.js"></script>
-    <script type="d2d1d6e2f87cbebdf4013b26-text/javascript" src="{{asset('adminity')}}/js/jquery-ui.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+    
     <script type="d2d1d6e2f87cbebdf4013b26-text/javascript" src="{{asset('adminity')}}/js/popper.min.js"></script>
+    
     <script type="d2d1d6e2f87cbebdf4013b26-text/javascript" src="{{asset('adminity')}}/js/bootstrap.min.js"></script>
 
     <script src="{{asset('adminity')}}/js/waves.min.js" type="d2d1d6e2f87cbebdf4013b26-text/javascript"></script>
@@ -556,6 +598,7 @@
     <script type="d2d1d6e2f87cbebdf4013b26-text/javascript" src="{{asset('adminity')}}/js/script.min.js"></script>
     <script src="{{asset('adminity')}}/js/rocket-loader.min.js" data-cf-settings="d2d1d6e2f87cbebdf4013b26-|49"
         defer=""></script>
+    
     @yield('footer')
 </body>
 

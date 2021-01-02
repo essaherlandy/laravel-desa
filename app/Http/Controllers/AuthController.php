@@ -19,8 +19,8 @@ class AuthController extends Controller
 
     public function postlogin(Request $request)
     {
-        if(Auth::attempt($request->only('email','password'))){
-            return redirect('admin/dashboard')->with('success','Anda berhasil masuk ke sistem');
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            return redirect()->route('dashboard')->with('success','Anda berhasil masuk ke sistem');
         }
         return redirect('/login');
     }

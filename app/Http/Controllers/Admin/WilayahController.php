@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Desa;
+use App\Dusun;
 use App\Http\Controllers\Controller;
 use App\Kota;
 use App\Kecamatan;
 use App\Provinsi;
+use App\RW;
 use Illuminate\Http\Request;
 
 class WilayahController extends Controller
@@ -82,5 +85,67 @@ class WilayahController extends Controller
         ]);
 
         return redirect()->route('dashboard.admin.kecamatan')->with('sukses', 'Data berhasil diupdate');
+    }
+
+    public function desa()  
+    {
+        $villages = Desa::paginate(5);
+        return view('dashboard.admin.desa',compact('villages'));
+    }
+    public function desaEdit($id)
+    {
+        $villages = Desa::where('id',$id)->first();
+        return view('dashboard.admin.edit-desa',['villages' => $villages]);
+    }
+    public function desaUpdate(Request $request, $id)
+    {
+        $villages = Desa::where('id',$id)->update([
+            'kode_desa_bps'         => $request->kode_desa_bps,
+            'kode_desa_kemendagri'  => $request->kode_desa_kemendagri,
+            'nama_desa'             => $request->nama_desa
+        ]);
+    }
+
+    public function dusun()
+    {
+        $dusun = Dusun::paginate(5);
+        $desa = Desa::all();
+        return view('dashboard.admin.dusun',compact('dusun','desa'));
+    }
+
+    public function dusunStore(Request $request)
+    {
+        $dusun = Dusun::create([
+            'kode_dusun_bps'        => $request->kode_dusun_bps,
+            'kode_dusun_kemendagri' => $request->kode_dusun_kemendagri,
+            'nama_dusun'            => $request->nama_dusun,
+            'luas_wilayah'          => $request->luas_wilayah,
+            'id_desa'               => $request->id_desa
+        ]);
+        return redirect()->route('dashboard.admin.dusun')->with('sukses', 'Data berhasil disimpan');
+    }
+    public function dusunEdit($id)
+    {
+        $dusun = Dusun::where('id',$id)->first();
+        $desa = Desa::where('id',$id)->orderBy('nama_desa','ASC')->get();
+        return view('dashboard.admin.edit-dusun',['dusun' => $dusun,'desa' => $desa]);  
+    }
+
+    public function dusunUpdate(Request $request, $id)
+    {
+        $dusun = Dusun::where('id',$id)->update([
+            'kode_dusun_bps'    => $request->kode_dusun_bps,
+            'kode_dusun_kemendagri' => $request->kode_dusun_kemendagri,
+            'nama_dusun'            => $request->nama_dusun,
+            'luas_wilayah'          => $request->luas_wilayah,
+            'id_desa'               => $request->id_desa
+        ]);
+        return redirect()->route('dashboard.admin.dusun')->with('sukses', 'Data berhasil diupdate');
+    }
+
+    public function rw()
+    {
+        $rw = RW::paginate(5);
+        return view('dashboard.admin.rw',compact('rw'));
     }
 }

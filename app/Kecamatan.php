@@ -13,4 +13,9 @@ class Kecamatan extends Model
     public function kotas(){
         return $this->belongsTo('App\Kota', 'id_kab_kota');
     }
+
+    public function desa()
+    {
+        return $this->hasOne('App\Desa', 'id_kecamatan');
+    }
 }
