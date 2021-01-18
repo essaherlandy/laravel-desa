@@ -37,7 +37,7 @@
                                 @endif
                                 <a href="{{route('dashboard.pengelola.keluarga-create')}}" class="btn btn-primary btn-sm mb-3"><i class="fa fa-plus"></i> Tambah Data</a>
                                     <div id="row-select_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                        @if(count($keluargas) > 0)
+                                        @if(count($penduduks) > 0)
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12">
                                                 <table id="row-select"
@@ -47,7 +47,7 @@
                                                         <tr>
                                                             <th>No</th>
                                                             <th>No KK</th>
-                                                            <th>Nama Kepala Keluarga</th>
+                                                            <th>Nama Kepala penduduk</th>
                                                             <th>Alamat</th>
                                                             <th>RT</th>
                                                             <th>RW</th>
@@ -58,17 +58,17 @@
                                                     <tbody>
                                                     <tbody>
                                                     <?php $no=1;?>
-                                                    @foreach($keluargas as $index => $keluarga)
+                                                    @foreach($penduduks as $index => $penduduk)
                                                     <tr>
-                                                        <td>{{$index + $keluargas->firstItem()}}</td>
-                                                        <td>{{$keluarga->no_kk}}</td>
-                                                        <td>{{$keluarga->hubungan_keluarga->first()->nama_ayah}}</td>
-                                                        <td>{{$keluarga->alamat_jalan}}</td>
-                                                        <td>{{$keluarga->rw->nomor_rw}}</td>
-                                                        <td>{{$keluarga->rt->nomor_rt}}</td>
-                                                        <td>{{$keluarga->dusun->nama_dusun}}</td>
+                                                        <td>{{$index + $penduduks->firstItem()}}</td>
+                                                        <td>{{$penduduk->keluarga->no_kk}}</td>
+                                                        <td>{{$penduduk->keluarga->hubungan_keluarga->first()->nama_ayah}}</td>
+                                                        <td>{{$penduduk->keluarga->alamat_jalan}}</td>
+                                                        <td>{{$penduduk->rw->nomor_rw}}</td>
+                                                        <td>{{$penduduk->rt->nomor_rt}}</td>
+                                                        <td>{{$penduduk->dusun->nama_dusun}}</td>
                                                         <td>
-                                                            <a href="{{url('edit-keluarga', $keluarga->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                                            <a href="{{url('edit-penduduk', $penduduk->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                                                             <a href="" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a>
                                                             <a href="" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                                             <a href="" class="btn btn-primary btn-sm"><i class="fa fa-print"></i></a>
@@ -77,8 +77,8 @@
                                                     @endforeach
                                                     </tbody>
                                                 </table>
-                                                <a>Total Keseluruhan: <b>{{ $keluargas->total() }}</b></a>
-                                                {{$keluargas->appends(request()->query())->links()}}
+                                                <a>Total Keseluruhan: <b>{{ $penduduks->total() }}</b></a>
+                                                {{$penduduks->appends(request()->query())->links()}}
                                             </div>
                                         </div>
                                         @else
@@ -104,7 +104,7 @@
 </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="tambahKeluarga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="tambahpenduduk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -121,10 +121,10 @@
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <i class="icofont icofont-close-line-circled"></i>
                         </button>
-                        <strong>DATA KELUARGA</strong>
+                        <strong>DATA penduduk</strong>
                     </div>
                     <div class="form-group">
-                        <label>Nomor Kartu Keluarga</label>
+                        <label>Nomor Kartu penduduk</label>
                         <input name="name" type="text" class="form-control" placeholder="Masukan nama user"
                             value="{{ old('name') }}">
                     </div>
@@ -208,7 +208,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <i class="icofont icofont-close-line-circled"></i>
                         </button>
-                        <strong>Data Kepala Keluarga</strong>
+                        <strong>Data Kepala penduduk</strong>
                     </div>
                     <div class="form-group">
                         <label>Status Penduduk Sementara</label>

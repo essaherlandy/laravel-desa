@@ -270,12 +270,47 @@ Route::namespace('Pengelola')->group(function(){
         Route::get('/kehamilan/delete/{id}', 'KesehatanController@kehamilanDelete')->name('dashboard.pengelola.kesehatan.kehamilan-delete');
     
         /*Peristiwa Kelahiran*/
-        Route::get('kehamilan','KesehatanController@kehamilan')->name('dashboard.pengelola.kesehatan.kehamilan');
-        Route::get('kehamilan-create','KesehatanController@kehamilanCreate')->name('dashboard.pengelola.kesehatan.kehamilan-create');
-        Route::post('get-kehamilan','KesehatanController@getKehamilan')->name('dashboard.pengelola.kesehatan.get-kehamilan');
-        Route::post('kehamilan-store','KesehatanController@kehamilanStore')->name('dashboard.pengelola.kesehatan.kehamilan-store');
-        Route::post('/update-kehamilan/{id}','KesehatanController@kehamilanUpdate')->name('dashboard.pengelola.kesehatan.kehamilan-update');
-        Route::get('/kehamilan/delete/{id}', 'KesehatanController@kehamilanDelete')->name('dashboard.pengelola.kesehatan.kehamilan-delete');
+        Route::get('kelahiran','PeristiwaController@kelahiran')->name('dashboard.pengelola.peristiwa.kelahiran');
+        Route::get('kelahiran-create','PeristiwaController@kelahiranCreate')->name('dashboard.pengelola.peristiwa.kelahiran-create');
+        Route::post('get-kelahiran','PeristiwaController@getKelahiran')->name('dashboard.pengelola.peristiwa.get-kelahiran');
+        Route::post('kelahiran-store','PeristiwaController@kelahiranStore')->name('dashboard.pengelola.peristiwa.kelahiran-store');
+        Route::get('/edit-kelahiran/{id}','PeristiwaController@kelahiranEdit')->name('dashboard.pengelola.peristiwa.edit-kelahiran');
+        Route::post('/update-kelahiran/{id}','PeristiwaController@kelahiranUpdate')->name('dashboard.pengelola.peristiwa.update-kelahiran');
+        Route::get('/kelahiran/delete/{id}', 'PeristiwaController@kelahiranDelete')->name('dashboard.pengelola.peristiwa.kelahiran-delete');
+
+        /*Peristiwa Kematian*/
+        Route::get('kematian','PeristiwaController@kematian')->name('dashboard.pengelola.peristiwa.kematian');
+        Route::get('kematian-create','PeristiwaController@kematianCreate')->name('dashboard.pengelola.peristiwa.kematian-create');
+        Route::post('get-kematian','PeristiwaController@getKematian')->name('dashboard.pengelola.peristiwa.get-kematian');
+        Route::post('kematian-store','PeristiwaController@kematianStore')->name('dashboard.pengelola.peristiwa.kematian-store');
+        Route::get('/edit-kematian/{id}','PeristiwaController@kematianEdit')->name('dashboard.pengelola.peristiwa.edit-kematian');
+        Route::post('/update-kematian/{id}','PeristiwaController@kematianUpdate')->name('dashboard.pengelola.peristiwa.kematian-update');
+        Route::get('/kematian/delete/{id}', 'PeristiwaController@kematianDelete')->name('dashboard.pengelola.peristiwa.kematian-delete');
+
+        /*Peristiwa Kematian*/
+        Route::get('data-perangkat','PerangkatDesaController@perangkat')->name('dashboard.pengelola.perangkat.data-perangkat');
+        Route::get('perangkat-create','PerangkatDesaController@perangkatCreate')->name('dashboard.pengelola.perangkat.perangkat-create');
+        Route::post('get-perangkat','PerangkatDesaController@getPerangkat')->name('dashboard.pengelola.perangkat.get-perangkat');
+        Route::post('perangkat-store','PerangkatDesaController@perangkatStore')->name('dashboard.pengelola.perangkat.perangkat-store');
+        Route::get('/edit-perangkat/{id}','PerangkatDesaController@perangkatEdit')->name('dashboard.pengelola.perangkat.edit-perangkat');
+        Route::post('/update-perangkat/{id}','PerangkatDesaController@perangkatUpdate')->name('dashboard.pengelola.perangkat.perangkat-update');
+        Route::get('/perangkat/delete/{id}', 'PerangkatDesaController@perangkatDelete')->name('dashboard.pengelola.perangkat.perangkat-delete');
+
+         /*Peristiwa Pindah Masuk*/
+         Route::get('pindah-masuk','PeristiwaController@masuk')->name('dashboard.pengelola.peristiwa.pindah-masuk');
+         Route::get('pindah-masuk-create','PeristiwaController@masukCreate')->name('dashboard.pengelola.peristiwa.pindah-masuk-create');
+         Route::post('pindah-masuk-store','PeristiwaController@masukStore')->name('dashboard.pengelola.peristiwa.pindah-masuk-store');
+         Route::post('/update-pindah-masuk/{id}','PeristiwaController@masukUpdate')->name('dashboard.pengelola.peristiwa.pindah-masuk-update');
+         Route::get('/pindah-masuk/delete/{id}', 'PeristiwaController@masukDelete')->name('dashboard.pengelola.peristiwa.pindah-masuk-delete');
+    
+         /*Peristiwa Pindah keluar*/
+         Route::get('pindah-keluar','PeristiwaController@keluar')->name('dashboard.pengelola.peristiwa.pindah-keluar');
+         Route::get('pindah-keluar-create','PeristiwaController@keluarCreate')->name('dashboard.pengelola.peristiwa.pindah-keluar-create');
+         Route::post('get-pindah-keluar','PeristiwaController@getKeluar')->name('dashboard.pengelola.peristiwa.get-pindah-keluar');
+         Route::post('pindah-keluar-store','PeristiwaController@keluarStore')->name('dashboard.pengelola.peristiwa.pindah-keluar-store');
+         Route::post('/update-pindah-keluar/{id}','PeristiwaController@keluarUpdate')->name('dashboard.pengelola.peristiwa.pindah-keluar-update');
+         Route::get('/pindah-keluar/delete/{id}', 'PeristiwaController@keluarDelete')->name('dashboard.pengelola.peristiwa.pindah-keluar-delete');
+        
     });
 
 });

@@ -33,11 +33,25 @@
                                     <div class="table-responsive">
                                         <h4 class="alert-heading text-center"><strong>{{session('success')}}</strong></h4>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <div id="chartJK"></div>
+                                            <div class="col-md-12 col-lg-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                    <h5>Berdasarkan Kepala Keluarga</h5>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div id="JenisK"></div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div id="statDesa"></div>
+                                            <div class="col-md-12 col-lg-6">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                    <h5>Berdasarkan Jenis Kelamin</h5>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div id="container"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -53,100 +67,94 @@
 @endsection
 
 @section('footer')
+<script type="edfaf0e4e15d97d1100761e4-text/javascript" src="js/jquery.min.js"></script>
+<script type="edfaf0e4e15d97d1100761e4-text/javascript" src="js/jquery-ui.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 
 <script>
-    Highcharts.chart('chartJK', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Grafik Statistik Desa'
-    },
-    subtitle: {
-        text: 'Berdasarkan Jenis Kelamin Kepala Keluarga'
-    },
-    xAxis: {
-        categories: [
-            'Kepala Keluarga'
-        ],
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Jumlah kepala keluarga'
-        }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
-    },
-    series: [{
-        name: 'Laki-Laki',
-        data: {!!json_encode($data)!!}
-
-    }, {
-        name: 'Perempuan',
-        data: [83.6]
-
-    }]
-});
-</script>
-
-<script>
-    Highcharts.chart('statDesa', {
+        Highcharts.chart('JenisK', {
         chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
+            type: 'column'
         },
         title: {
-            text: 'Grafik Statistik Desa'
+            text: 'Monthly Average Rainfall'
         },
         subtitle: {
-        text: 'Berdasarkan Jenis Kelamin Kependudukan'
+            text: 'Source: WorldClimate.com'
         },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        xAxis: {
+            categories: [
+                'Laki-Laki',
+                'Perempuan',
+            ],
+            crosshair: true
         },
-        accessibility: {
-            point: {
-                valueSuffix: '%'
+        yAxis: {
+            min: 0,
+            title: {
+                text: ''
             }
         },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
         plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                }
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
             }
         },
         series: [{
-            name: 'Brands',
-            colorByPoint: true,
-            data: [{
-                name: 'Laki-Laki',
-                y: {!! json_encode($data) !!}
-            }, {
-                name: 'Perempuan',
-                y: 11.84
-            }]
+            name: ['Jenis Kelamin'],
+            data: [49.9, 71.5]
+
         }]
     });
+    Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Browser market shares in January, 2018'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'Laki-Laki',
+            y: 61.41,
+        }, {
+            name: 'Perempuan',
+            y: 11.84
+        }]
+    }]
+});
+
 </script>
 @endsection

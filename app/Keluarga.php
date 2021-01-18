@@ -34,4 +34,9 @@ class Keluarga extends Model
     {
         return $this->hasOne('App\Ksosial', 'id', 'id_kelas_sosial');
     }
+
+    public function penduduk()
+    {
+        return $this->hasMany('App\Penduduk', 'id', 'id_penduduk');
+    }
 }

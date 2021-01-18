@@ -31,8 +31,8 @@ class KependudukanController extends Controller
 {
     public function keluarga()
     {   
-        $keluargas = Keluarga::paginate(10);
-        return view('dashboard.pengelola.data-keluarga',compact('keluargas'));
+        $penduduks = Penduduk::paginate(10);
+        return view('dashboard.pengelola.data-keluarga',compact('penduduks'));
     }
 
     public function keluargaCreate()
@@ -232,7 +232,6 @@ class KependudukanController extends Controller
         $kontrasepsi        = Kontrasepsi::get();
         $kewarganegaraan    = Kewarganegaraan::get();
         $statusKeluarga     = StatusKeluarga::where('deskripsi','Kepala Keluarga')->first();
-        dd($statusKeluarga);
 
         return view('dashboard.pengelola.edit-keluarga',[
             'penduduk'              => $penduduk,

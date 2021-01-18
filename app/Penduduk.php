@@ -13,4 +13,24 @@ class Penduduk extends Model
     public function jenis_kelamin(){
         return $this->belongsTo('App\JenisKelamin', 'id_jenis_kelamin');
     }
+    public function rw()
+    {
+        return $this->belongsTo('App\RW', 'id_rw');
+    }
+
+    public function rt()
+    {
+        return $this->belongsTo('App\RT', 'id_rt');
+    }
+
+    public function dusun()
+    {
+        return $this->belongsTo('App\Dusun', 'id_dusun');
+    }
+
+    public function keluarga()
+    {
+        return $this->belongsTo('App\Keluarga','id','id_penduduk');
+    }
+
 }

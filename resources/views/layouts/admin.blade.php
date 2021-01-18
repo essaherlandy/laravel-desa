@@ -503,21 +503,43 @@
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class="">
-                                                <a href="widget-statistic.html" class="waves-effect waves-dark">
+                                                <a href="{{route('dashboard.pengelola.peristiwa.kelahiran')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Kelahiran</span>
                                                 </a>
                                             </li>
                                             <li class="">
-                                                <a href="widget-data.html" class="waves-effect waves-dark">
+                                                <a href="{{route('dashboard.pengelola.peristiwa.kematian')}}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Meninggal</span>
                                                 </a>
                                             </li>
-                                            <li class="">
-                                                <a href="widget-statistic.html" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Pindah Penduduk</span>
+                                            <li class="pcoded-hasmenu pcoded-trigger" dropdown-icon="style1" subitem-icon="style1">
+                                                <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                                <span class="pcoded-mtext">Pindah Penduduk</span>
                                                 </a>
+                                                <ul class="pcoded-submenu" style="display: block;">
+                                                    <li class="">
+                                                        <a href="{{route('dashboard.pengelola.peristiwa.pindah-masuk')}}" class="waves-effect waves-dark">
+                                                        <span class="pcoded-mtext">Pindah Masuk</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="{{route('dashboard.pengelola.peristiwa.pindah-keluar')}}" class="waves-effect waves-dark">
+                                                        <span class="pcoded-mtext">Pindah Keluar</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </li>
                                         </ul>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class=" ">
+                                        <a href="{{route('dashboard.pengelola.perangkat.data-perangkat')}}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Kelola Perangkat Desa</span>
+                                        </a>
                                     </li>
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">

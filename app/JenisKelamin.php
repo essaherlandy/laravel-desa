@@ -14,4 +14,9 @@ class JenisKelamin extends Model
     {
         return $this->hasOne('App\Penduduk', 'id','id_jenis_kelamin');
     }
+
+    public function kelahiran()
+    {
+        return $this->hasOne('App\Kelahiran', 'id','id_jenis_kelamin');
+    }
 }
