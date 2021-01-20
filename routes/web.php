@@ -124,6 +124,15 @@ Route::namespace('Admin')->group(function(){
         Route::get('/edit-rw/{id}','WilayahController@rwEdit')->name('dashboard.admin.edit-rw');
         Route::post('/update-rw/{id}','WilayahController@rwUpdate')->name('dashboard.admin.rw-update');
         /* Pengelolaan Data Wilayah End */
+
+         /*Peristiwa Kematian*/
+         Route::get('data-perangkat','PerangkatDesaController@perangkat')->name('dashboard.admin.perangkat.data-perangkat');
+         Route::get('perangkat-create','PerangkatDesaController@perangkatCreate')->name('dashboard.admin.perangkat.perangkat-create');
+         Route::post('get-perangkat','PerangkatDesaController@getPerangkat')->name('dashboard.admin.perangkat.get-perangkat');
+         Route::post('perangkat-store','PerangkatDesaController@perangkatStore')->name('dashboard.admin.perangkat.perangkat-store');
+         Route::get('/edit-perangkat/{id}','PerangkatDesaController@perangkatEdit')->name('dashboard.admin.perangkat.edit-perangkat');
+         Route::post('/update-perangkat/{id}','PerangkatDesaController@perangkatUpdate')->name('dashboard.admin.perangkat.perangkat-update');
+         Route::get('/perangkat/delete/{id}', 'PerangkatDesaController@perangkatDelete')->name('dashboard.admin.perangkat.perangkat-delete');
     });
 
 });
@@ -286,15 +295,6 @@ Route::namespace('Pengelola')->group(function(){
         Route::get('/edit-kematian/{id}','PeristiwaController@kematianEdit')->name('dashboard.pengelola.peristiwa.edit-kematian');
         Route::post('/update-kematian/{id}','PeristiwaController@kematianUpdate')->name('dashboard.pengelola.peristiwa.kematian-update');
         Route::get('/kematian/delete/{id}', 'PeristiwaController@kematianDelete')->name('dashboard.pengelola.peristiwa.kematian-delete');
-
-        /*Peristiwa Kematian*/
-        Route::get('data-perangkat','PerangkatDesaController@perangkat')->name('dashboard.pengelola.perangkat.data-perangkat');
-        Route::get('perangkat-create','PerangkatDesaController@perangkatCreate')->name('dashboard.pengelola.perangkat.perangkat-create');
-        Route::post('get-perangkat','PerangkatDesaController@getPerangkat')->name('dashboard.pengelola.perangkat.get-perangkat');
-        Route::post('perangkat-store','PerangkatDesaController@perangkatStore')->name('dashboard.pengelola.perangkat.perangkat-store');
-        Route::get('/edit-perangkat/{id}','PerangkatDesaController@perangkatEdit')->name('dashboard.pengelola.perangkat.edit-perangkat');
-        Route::post('/update-perangkat/{id}','PerangkatDesaController@perangkatUpdate')->name('dashboard.pengelola.perangkat.perangkat-update');
-        Route::get('/perangkat/delete/{id}', 'PerangkatDesaController@perangkatDelete')->name('dashboard.pengelola.perangkat.perangkat-delete');
 
          /*Peristiwa Pindah Masuk*/
          Route::get('pindah-masuk','PeristiwaController@masuk')->name('dashboard.pengelola.peristiwa.pindah-masuk');

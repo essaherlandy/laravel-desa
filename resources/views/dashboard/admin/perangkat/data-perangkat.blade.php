@@ -36,7 +36,7 @@
                                         </div>
                                     </div>
                                 @endif
-                                <a href="{{route('dashboard.pengelola.perangkat.perangkat-create')}}" class="btn btn-primary btn-sm mb-3"><i class="fa fa-plus"></i> Tambah Data</a>
+                                <a href="{{route('dashboard.admin.perangkat.perangkat-create')}}" class="btn btn-primary btn-sm mb-3"><i class="fa fa-plus"></i> Tambah Data</a>
                                     <div id="row-select_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                         @if(count($perangkats) > 0)
                                         <div class="row">
@@ -47,8 +47,16 @@
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
+                                                            <th>NIP</th>
                                                             <th>Nama</th>
+                                                            <th>NIAP</th>
                                                             <th>Jabatan</th>
+                                                            <th>Status</th>
+                                                            <th>Golongan</th>
+                                                            <th>No. SK Angkat</th>
+                                                            <th>Tanggal Angkat</th>
+                                                            <th>No. SK Berhenti</th>
+                                                            <th>Tanggal Berhenti</th>
                                                             <th>Aksi</th>
                                                         </tr>
                                                     </thead>
@@ -58,8 +66,16 @@
                                                     @foreach($perangkats as $index => $perangkat)
                                                     <tr>
                                                         <td>{{$index + $perangkats->firstItem()}}</td>
-                                                        <td>{{$perangkat->nama}}</td>
-                                                        <td>{{$perangkat->jabatan}}</td>
+                                                        <td>{{$perangkat->nip}}</td>
+                                                        <td>{{$perangkat->penduduk->nama}}</td>
+                                                        <td>{{$perangkat->niap}}</td>
+                                                        <td>{{$perangkat->jabatan->deskripsi}}</td>
+                                                        <td>{{$perangkat->is_active}}</td>
+                                                        <td>{{$perangkat->pangkat_golongan->deskripsi}}</td>
+                                                        <td>{{$perangkat->no_sk_angkat}}</td>
+                                                        <td>{{\Carbon\Carbon::parse($perangkat->tgl_angkat)->format('d-m-Y')}}</td>
+                                                        <td>{{$perangkat->no_sk_berhenti}}</td>
+                                                        <td>{{\Carbon\Carbon::parse($perangkat->tgl_berhenti)->format('d-m-Y')}}</td>
                                                         <td>
                                                         <a href="{{url('edit-perangkat', $perangkat->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>   
                                                         <a class="btn btn-danger btn-sm text-white"
@@ -76,7 +92,7 @@
                                                                             </button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form action="{{route('dashboard.pengelola.perangkat.perangkat-delete',$perangkat->id)}}" method="GET" enctype="multipart/form-data">
+                                                                            <form action="{{route('dashboard.admin.perangkat.perangkat-delete',$perangkat->id)}}" method="GET" enctype="multipart/form-data">
                                                                                 {{csrf_field()}}
                                                                                 <div class="text-center">
                                                                                     <h4><strong>Apakah anda yakin ingin menghapus item ini??</strong></h4>

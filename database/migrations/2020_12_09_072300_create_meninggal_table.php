@@ -25,6 +25,7 @@ class CreateMeninggalTable extends Migration
             $table->string('nama_pelapor');
             $table->string('hubungan_pelapor');
             $table->bigInteger('id_surat');
+            $table->string('kepala_desa');
             $table->timestamps();
         });
     }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Pengelola;
 
+
+use App\Perangkat;
 use App\Meninggal;
 use App\JenisKelamin;
+use App\Jabatan;
 use App\Penduduk;
 use App\Pelapor;
 use App\Kelahiran;
@@ -23,12 +26,14 @@ class PeristiwaController extends Controller
         $jenisKelamin = JenisKelamin::orderBy('deskripsi','ASC')->get();
         $penduduk   = Penduduk::get();
         $pelapor    = Pelapor::orderBy('deskripsi','ASC')->get();
-        $penduduks = Penduduk::where('id','4')->first();
+        $perangkatDesa = Perangkat::where('id','1')->first();
+        $jabatan        = Jabatan::where('deskripsi','Kepala Desa')->first();
         return view('dashboard.pengelola.peristiwa.kelahiran-create',[
             'penduduk'          => $penduduk,
             'jenisKelamin'      => $jenisKelamin,
             'pelapor'           => $pelapor,
-            'penduduks'         => $penduduks,
+            'perangkatDesa'     => $perangkatDesa,
+            'jabatan'           => $jabatan
         ]);
     }
 
@@ -81,14 +86,16 @@ class PeristiwaController extends Controller
         $jenisKelamin = JenisKelamin::orderBy('deskripsi','ASC')->get();
         $penduduk   = Penduduk::get();
         $pelapor    = Pelapor::orderBy('deskripsi','ASC')->get();
-        $penduduks = Penduduk::where('id','4')->first();
+        $perangkatDesa = Perangkat::where('id','1')->first();
+        $jabatan        = Jabatan::where('deskripsi','Kepala Desa')->first();
         $kelahirans = Kelahiran::where('id',$id)->first();
         return view('dashboard.pengelola.peristiwa.edit-kelahiran',[
             'penduduk'          => $penduduk,
             'jenisKelamin'      => $jenisKelamin,
             'pelapor'           => $pelapor,
-            'penduduks'         => $penduduks,
-            'kelahirans'         => $kelahirans,
+            'perangkatDesa'     => $perangkatDesa,
+            'jabatan'           => $jabatan,
+            'kelahirans'        => $kelahirans,
         ]);
     }
 
@@ -127,15 +134,19 @@ class PeristiwaController extends Controller
 
     public function kematianCreate(Request $request)
     {
+        
         $penduduks = Penduduk::where('id','4')->first();
         $pelapor    = Pelapor::orderBy('deskripsi','ASC')->get();
         $jenisKelamin = JenisKelamin::orderBy('deskripsi','ASC')->get();
         $penduduk = Penduduk::get();
+        $perangkatDesa = Perangkat::where('id','1')->first();
+        $jabatan        = Jabatan::where('deskripsi','Kepala Desa')->first();
         return view('dashboard.pengelola.peristiwa.kematian-create',[
             'penduduk'          => $penduduk,
             'jenisKelamin'      => $jenisKelamin,
             'pelapor'           => $pelapor,
-            'penduduks'         => $penduduks
+            'perangkatDesa'     => $perangkatDesa,
+            'jabatan'           => $jabatan,
         ]);
     }
 

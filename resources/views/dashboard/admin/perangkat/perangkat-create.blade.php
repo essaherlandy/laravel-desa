@@ -27,12 +27,40 @@
                             </div>
 
                             <div class="card-block">
-                                <form action="{{route('dashboard.pengelola.peristiwa.kematian-store')}}" method="post">
+                                <form action="{{route('dashboard.admin.perangkat.perangkat-store')}}" method="post">
                                     {{csrf_field()}}
-                                    <h4 class="mt-3">Data Kematian Penduduk</h4>
-                                    <hr>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label" for="nik_nama">Pencarian Data Kematian</label>  
+                                        <label class="col-md-3 control-label" for="nama">Jabatan Perangkat Desa</label>  
+                                        <div class="col-md-9">
+                                            <select name="id_jabatan" id="id_jabatan" class="form-control input-md" required>
+                                                <option value="" selected="selected">--Pilih--</option>
+                                                @foreach($jabatan as $jb)
+                                                <option value="{{$jb->id}}" {{ old('id_jabatan') == $jb->id ? 'selected' : '' }}>{{$jb->deskripsi}}</option>
+                                                @endforeach
+                                            </select> 
+                                            <span class="help-block"></span>  
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Status Perangkat Desa</label>
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="Status1">
+                                                <input class="form-check-input" type="radio" name="is_active" id="Status1" value="Y">
+                                                Aktif
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="Status2">
+                                                <input class="form-check-input" type="radio" name="is_active" id="Status2" value="N">
+                                                Tidak Aktif
+                                            </label>
+                                        </div>
+                                        @if($errors->first('is_resti'))
+                                            <span class="text-danger font-size-14">{{ $errors->first('is_resti') }}</span>
+                                        @endif
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="nik_nama">Pencarian Data Perangkat Desa</label>  
                                         <div class="col-md-9">
                                             <input id="penduduk_search" type="text" class="form-control input-md ui-autocomplete-input" autocomplete="off">
                                             <span class="help-block"></span>  
@@ -54,61 +82,61 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                    <label class="col-md-3 control-label" for="tgl_hpl">Tanggal Kematian</label>  
+                                        <label class="col-md-3 control-label" for="nama">NIP</label>  
+                                        <div class="col-md-9">
+                                            <input name="nip" type="text" class="form-control input-md ui-autocomplete-input" placeholder="NIP">
+                                            <span class="help-block"></span>  
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="nama">NIAP</label>  
+                                        <div class="col-md-9">
+                                            <input name="niap" type="text" class="form-control input-md ui-autocomplete-input" placeholder="NIAP">
+                                            <span class="help-block"></span>  
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="nama">Golongan</label>  
+                                        <div class="col-md-9">
+                                            <select name="id_pangkat_gol" id="id_pangkat_gol" class="form-control input-md" required>
+                                                <option value="" selected="selected">--Pilih--</option>
+                                                @foreach($pangkatGolongan as $pangkat)
+                                                <option value="{{$pangkat->id}}" {{ old('id_pangkat_gol') == $pangkat->id ? 'selected' : '' }}>{{$pangkat->deskripsi}}</option>
+                                                @endforeach
+                                            </select> 
+                                            <span class="help-block"></span>  
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="nama">No. SK Angkat</label>  
+                                        <div class="col-md-9">
+                                            <input name="no_sk_angkat" type="text" class="form-control input-md ui-autocomplete-input" placeholder="No. SK Angkat">
+                                            <span class="help-block"></span>  
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                    <label class="col-md-3 control-label" for="tgl_hpl">Tanggal Angkat</label>  
                                         <div class="input-group mb-2 col-md-6">
                                             <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-table"></i></div>
                                             </div>
-                                            <input name="tgl_meninggal" type="text" class="datepicker form-control" autocomplete="off">
+                                            <input name="tgl_angkat" type="text" class="datepicker form-control" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label" for="nama">Penyebab Kematian</label>  
+                                        <label class="col-md-3 control-label" for="nama">No. SK Berhenti</label>  
                                         <div class="col-md-9">
-                                            <input name="sebab" type="text" class="form-control" placeholder="Penyebab Kematian">
+                                            <input name="no_sk_berhenti" type="text" class="form-control input-md ui-autocomplete-input" placeholder="No. SK Berhenti">
                                             <span class="help-block"></span>  
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label" for="nama">Penentu Kematian</label>  
-                                        <div class="col-md-9">
-                                            <input name="penentu_kematian" type="text" class="form-control" placeholder="Penentu Kematian">
-                                            <span class="help-block"></span>  
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="nama">Tempat Kematian</label>  
-                                        <div class="col-md-9">
-                                            <input name="tempat_kematian" type="text" class="form-control" placeholder="Tempat Kematian">
-                                            <span class="help-block"></span>  
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <h4 class="mt-3">Data Pelapor Kematian</h4>
-                                    <hr>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="nama">Nama Pelapor</label>  
-                                        <div class="col-md-9">
-                                            <input name="nama_pelapor" type="text" class="form-control" placeholder="Nama Pelapor">
-                                            <span class="help-block"></span>  
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="ml-3 control-label" for="nama">Hubungan Pelapor</label>  
-                                        <div class="col-md-9">
-                                            <select name="id_pelapor" class="form-control">
-                                                <option>--PILIH--</option>
-                                                @foreach($pelapor as $pel)
-                                                    <option value="{{$pel->id}}" {{ old('id_pel') == $pel->id ? 'selected' : '' }}>{{$pel->deskripsi}}</option>
-                                                @endforeach
-                                            </select>  
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="ml-3 control-label" for="nama">Pamong Surat Kematian</label>  
-                                        <div class="col-md-9">
-                                        <input type="hidden" name="kepala_desa" class="form-control" value="{{$perangkatDesa->penduduk->nama}}" readonly> 
-                                            <input type="text" class="form-control" value="{{$perangkatDesa->penduduk->nama}} - {{$jabatan->deskripsi}}" readonly>  
+                                    <label class="col-md-3 control-label" for="tgl_hpl">Tanggal Berhenti</label>  
+                                        <div class="input-group mb-2 col-md-6">
+                                            <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-table"></i></div>
+                                            </div>
+                                            <input name="tgl_berhenti" type="text" class="datepicker form-control" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -140,7 +168,7 @@
                 source: function( request, response ) {
                     console.log(request.term)
                 $.ajax({
-                    url:"{{route('dashboard.pengelola.peristiwa.get-kelahiran')}}",
+                    url:"{{route('dashboard.admin.perangkat.get-perangkat')}}",
                     type: 'post',
                     dataType: "json",
                     data: {

@@ -31,6 +31,7 @@ class CreateKelahiranTable extends Migration
             $table->bigInteger('id_pelapor');
             $table->bigInteger('id_penduduk');
             $table->bigInteger('id_surat');
+            $table->string('kepala_desa');
             $table->timestamps();
         });
     }

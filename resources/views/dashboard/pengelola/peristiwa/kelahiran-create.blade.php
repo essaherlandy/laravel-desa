@@ -187,10 +187,8 @@
                                     <div class="form-group">
                                         <label class="ml-3 control-label" for="nama">Pamong Surat Kelahiran</label>  
                                         <div class="col-md-9">
-                                            <select name="id_penduduk" class="form-control">
-                                                <option>--PILIH--</option>
-                                                <option value="{{$penduduks->id}}" {{ old('id_penduduk') == $penduduks->id ? 'selected' : '' }}>{{$penduduks->nama}} - Kepala Desa</option>
-                                            </select>  
+                                            <input type="hidden" name="kepala_desa" class="form-control" value="{{$perangkatDesa->penduduk->nama}}" readonly> 
+                                            <input type="text" class="form-control" value="{{$perangkatDesa->penduduk->nama}} - {{$jabatan->deskripsi}}" readonly> 
                                         </div>
                                     </div>
                                     <div class="modal-footer">

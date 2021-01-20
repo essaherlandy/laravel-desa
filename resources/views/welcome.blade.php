@@ -6,7 +6,9 @@
     <div class="col-sm-12">
       <div class="card" data-aos="fade-up">
         <div class="card-body">
+          @if($logo)
             <img src="{{$logo->konten_logo_desa}}" alt="thumb" class="img-fluid"/>
+          @endif
         </div>
       </div>
     </div>

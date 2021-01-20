@@ -205,11 +205,16 @@
                                                 @endif
                                             </div>
                                             <div class="form-group">
-                                                <label>Tanggal Lahir</label>
-                                                <input name="tanggal_lahir" type="text" class="datepicker2 form-control">
-                                                @if($errors->first('tanggal_lahir'))
-                                                    <span class="text-danger font-size-14">{{ $errors->first('tanggal_lahir') }}</span>
-                                                @endif
+                                            <label class="col-md-3 control-label" for="tgl_hpl">Tanggal Lahir</label>  
+                                                <div class="input-group mb-2 col-md-6">
+                                                    <div class="input-group-prepend">
+                                                    <div class="input-group-text"><i class="fa fa-table"></i></div>
+                                                    </div>
+                                                    <input name="tgl_lahir" type="text" class="datepicker form-control" autocomplete="off">
+                                                    @if($errors->first('tgl_lahir'))
+                                                    <span class="text-danger font-size-14">{{ $errors->first('tgl_lahir') }}</span>
+                                                    @endif
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-6" for="id_jen_kel">Jenis Kelamin</label>

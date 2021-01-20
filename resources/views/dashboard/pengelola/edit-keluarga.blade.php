@@ -15,7 +15,7 @@
                     <div class="col-md-12">
                         <div class="card table-card">
                             <div class="card-header">
-                                <h5>Tambah Data Keluarga</h5>
+                                <h5>Edit Data Keluarga</h5>
                                 <div class="card-header-right">
                                     <ul class="list-unstyled card-option">
                                         <li class="first-opt"><i
@@ -44,19 +44,18 @@
                                                 </button>
                                                 <strong>DATA KELUARGA</strong>
                                             </div>
-                                            <input name="id" type="hidden" class="form-control" placeholder="Masukan nama user"
-                                                    value="{{ $keluarga->id }}">
                                             <div class="form-group">
                                                 <label>Nomor Kartu Keluarga</label>
                                                 <input name="no_kk" type="text" class="form-control" placeholder="Masukan nama user"
-                                                value="{{ $keluarga->no_kk }}">
+                                                    value="{{ $keluarga->no_kk }}">
                                                 @if($errors->first('no_kk'))
                                                     <span class="text-danger font-size-14">{{ $errors->first('no_kk') }}</span>
                                                 @endif
                                             </div>
                                             <div class="form-group">
                                                 <label>Alamat</label>
-                                                <textarea name="alamat_jalan" type="text" class="form-control" placeholder="Masukan nama user">{{ $keluarga->alamat_jalan }}</textarea>
+                                                <input name="alamat_jalan" type="text" class="form-control" placeholder="Masukan nama user"
+                                                    value="{{ $keluarga->alamat_jalan }}">
                                                 @if($errors->first('alamat_jalan'))
                                                     <span class="text-danger font-size-14">{{ $errors->first('alamat_jalan') }}</span>
                                                 @endif
@@ -67,7 +66,7 @@
                                                     <select id="id_dusun" name="id_dusun" class="form-control">
                                                         <option value="" selected disabled>Select</option>
                                                         @foreach($dusun as $key => $dusuns)
-                                                        <option value="{{$key}}" <?=($dusuns == $keluarga->id_dusun ? 'selected' : null)?>> {{$dusuns}}</option>
+                                                        <option value="{{$key}}"> {{$dusuns}}</option>
                                                         @endforeach
                                                     </select>
                                                     @if($errors->first('id_dusun'))
@@ -92,9 +91,9 @@
                                             <div class="form-group">
                                                 <label>Kelas Sosial</label>
                                                 <select name="id_kelas_sosial" class="form-control fill">
-                                                    <option>--PILIH KELAS SOSIAL--</option>
+                                                    <option value="0">--PILIH KELAS SOSIAL--</option>
                                                     @foreach($kelasSosial as $sosial)
-                                                        <option value="{{$sosial->id}}" <?=($keluarga->id_kelas_sosial == $sosial->id ? 'selected' : null)?>>{{$sosial->deskripsi}}</option>
+                                                        <option value="{{$sosial->id}}" <?=($sosial->id == $keluarga->id_kelas_sosial ? 'selected' : null)?>>{{$sosial->deskripsi}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->first('id_kelas_sosial'))
@@ -106,13 +105,13 @@
                                                     <label for="">Menerima PKH</label>
                                                     <div class="form-check">
                                                         <label class="form-check-label" for="gridRadios2">
-                                                            <input class="form-check-input" type="radio" name="is_pkh" id="gridRadios2" value="Y">
+                                                            <input class="form-check-input" type="radio" name="is_pkh" id="gridRadios2" value="Y" {{ $keluarga->is_pkh == 'Y' ? 'checked' : '' }}>
                                                             Ya
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <label class="form-check-label" for="gridRadios1">
-                                                            <input class="form-check-input" type="radio" name="is_pkh" id="gridRadios1" value="N">
+                                                            <input class="form-check-input" type="radio" name="is_pkh" id="gridRadios1" value="N" {{ $keluarga->is_pkh == 'N' ? 'checked' : '' }}>
                                                             Tidak
                                                         </label>
                                                     </div>
@@ -124,13 +123,13 @@
                                                 <label for="">Raskin</label>
                                                     <div class="form-check">
                                                         <label class="form-check-label" for="raskin1">
-                                                            <input class="form-check-input" type="radio" name="is_raskin" id="raskin1" value="Y">
+                                                            <input class="form-check-input" type="radio" name="is_raskin" id="raskin1" value="Y" {{ $keluarga->is_raskin == 'Y' ? 'checked' : '' }}>
                                                             Ya
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <label class="form-check-label" for="raskin2">
-                                                            <input class="form-check-input" type="radio" name="is_raskin" id="raskin2" value="N">
+                                                            <input class="form-check-input" type="radio" name="is_raskin" id="raskin2" value="N" {{ $keluarga->is_raskin == 'N' ? 'checked' : '' }}>
                                                             Tidak
                                                         </label>
                                                     </div>
@@ -142,13 +141,13 @@
                                                     <label for="">Jamkesmas</label>
                                                     <div class="form-check">
                                                         <label class="form-check-label" for="Jamkesmas1">
-                                                            <input class="form-check-input" type="radio" name="is_jamkesmas" id="Jamkesmas1" value="Y">
+                                                            <input class="form-check-input" type="radio" name="is_jamkesmas" id="Jamkesmas1" value="Y" {{ $keluarga->is_jamkesmas == 'Y' ? 'checked' : '' }}>
                                                             Ya
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <label class="form-check-label" for="Jamkesmas2">
-                                                            <input class="form-check-input" type="radio" name="is_jamkesmas" id="Jamkesmas2" value="N">
+                                                            <input class="form-check-input" type="radio" name="is_jamkesmas" id="Jamkesmas2" value="N" {{ $keluarga->is_jamkesmas == 'N' ? 'checked' : '' }}>
                                                             Tidak
                                                         </label>
                                                     </div>
@@ -167,13 +166,13 @@
                                                 <label>Status Penduduk Sementara</label>
                                                 <div class="form-check">
                                                     <label class="form-check-label" for="Status1">
-                                                        <input class="form-check-input" type="radio" name="is_sementara" id="Status1" value="Y">
+                                                        <input class="form-check-input" type="radio" name="is_sementara" id="Status1" value="Y" {{ $keluarga->is_sementara == 'Y' ? 'checked' : '' }}>
                                                         Ya
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <label class="form-check-label" for="Status2">
-                                                        <input class="form-check-input" type="radio" name="is_sementara" id="Status2" value="N">
+                                                        <input class="form-check-input" type="radio" name="is_sementara" id="Status2" value="N" {{ $keluarga->is_sementara == 'N' ? 'checked' : '' }}>
                                                         Tidak
                                                     </label>
                                                 </div>
@@ -206,13 +205,15 @@
                                                 @endif
                                             </div>
                                             <div class="form-group">
-                                                <label>Tanggal Lahir</label>
-                                                <br>
+                                            <label class="col-md-3 control-label" for="tgl_hpl">Tanggal Lahir</label>  
                                                 <div class="input-group mb-2 col-md-6">
                                                     <div class="input-group-prepend">
                                                     <div class="input-group-text"><i class="fa fa-table"></i></div>
                                                     </div>
-                                                    <input name="tanggal_lahir" type="text" class="datepicker2 form-control" value="{{$penduduk->tanggal_lahir}}">
+                                                    <input name="tgl_lahir" type="text" class="datepicker form-control" value="{{ $penduduk->tgl_lahir }}" autocomplete="off">
+                                                    @if($errors->first('tgl_lahir'))
+                                                    <span class="text-danger font-size-14">{{ $errors->first('tgl_lahir') }}</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -220,10 +221,10 @@
                                                 <div class="col-md-6">
                                                     <ul class="kelamin">
                                                     <li>
-                                                        <input name="id_jenis_kelamin" class="id_jen_kel" type="radio" id="laki" value="1"> Laki Laki      
+                                                        <input name="id_jenis_kelamin" class="id_jen_kel" type="radio" id="laki" value="1" {{ $penduduk->id_jenis_kelamin == '1' ? 'checked' : '' }}> Laki Laki      
                                                         </li>       
                                                         <li>
-                                                            <input name="id_jenis_kelamin" class="id_jen_kel" type="radio" id="perempuan" value="2"> Perempuan
+                                                            <input name="id_jenis_kelamin" class="id_jen_kel" type="radio" id="perempuan" value="2" {{ $penduduk->id_jenis_kelamin == '2' ? 'checked' : '' }}> Perempuan
                                                             <ul id="list-perempuan" style="display: none;">
                                                             <br>
                                                                 <li>
@@ -247,12 +248,12 @@
                                                                             <!-- Text input-->
                                                                             <div class="form-group">
                                                                             <label class="control-label" for="tgl_hpl">Tanggal Perkiraan Lahir</label>  
-                                                                            <div class="input-group mb-2 col-md-6">
-                                                                                <div class="input-group-prepend">
-                                                                                <div class="input-group-text"><i class="fa fa-table"></i></div>
+                                                                                <div class="input-group mb-2 col-md-6">
+                                                                                    <div class="input-group-prepend">
+                                                                                    <div class="input-group-text"><i class="fa fa-table"></i></div>
+                                                                                    </div>
+                                                                                    <input name="tanggal_lahir" type="text" class="datepicker form-control">
                                                                                 </div>
-                                                                                <input name="tanggal_lahir" type="text" class="datepicker form-control">
-                                                                            </div>
                                                                             </div>
                                                                         </li>
                                                                     </ul>
@@ -268,7 +269,7 @@
                                             <div class="form-group">
                                                 <label>Nomor Telepon</label>
                                                 <input name="no_telp" type="text" class="form-control" placeholder="Masukan nama user"
-                                                    value="{{$penduduk->no_telp}}">
+                                                    value="{{ $penduduk->no_telp }}">
                                                 @if($errors->first('no_telp'))
                                                     <span class="text-danger font-size-14">{{ $errors->first('no_telp') }}</span>
                                                 @endif
@@ -296,7 +297,7 @@
                                                 <select name="id_agama" id="id_agama" class="form-control input-md">
                                                     <option value="" selected="selected">--Pilih--</option>
                                                     @foreach($agama as $agamas)
-                                                        <option value="{{$agamas->id}}" <?=($penduduk->id_agama == $agamas->id ? 'selected' : null)?>>{{$agamas->deskripsi}}</option>
+                                                        <option value="{{$agamas->id}}" <?=($agamas->id == $penduduk->id_agama ? 'selected' : null)?>>{{$agamas->deskripsi}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->first('id_agama'))
@@ -308,7 +309,7 @@
                                                 <select name="id_goldar" id="id_goldar" class="form-control input-md">
                                                     <option value="" selected="selected">--Pilih--</option>
                                                     @foreach($golonganDarah as $goldar)
-                                                        <option value="{{$goldar->id}}" <?=($penduduk->id_goldar == $goldar->id ? 'selected' : null)?>>{{$goldar->deskripsi}}</option>
+                                                        <option value="{{$goldar->id}}" <?=($goldar->id == $penduduk->id_goldar ? 'selected' : null)?>>{{$goldar->deskripsi}}</option>
                                                     @endforeach
                                                 </select>   
                                                 @if($errors->first('id_goldar'))
@@ -320,7 +321,7 @@
                                                 <select name="id_pendidikan" id="id_goldar" class="form-control input-md">
                                                     <option value="" selected="selected">--Pilih--</option>
                                                     @foreach($pendidikans as $pendidikan)
-                                                        <option value="{{$pendidikan->id}}" <?=($penduduk->id_pendidikan == $pendidikan->id ? 'selected' : null)?>>{{$pendidikan->deskripsi}}</option>
+                                                        <option value="{{$pendidikan->id}}" <?=($pendidikan->id == $penduduk->id_pendidikan ? 'selected' : null)?>>{{$pendidikan->deskripsi}}</option>
                                                     @endforeach
                                                 </select>     
                                                 @if($errors->first('id_pendidikan'))
@@ -332,7 +333,7 @@
                                                 <select name="id_pendidikan_terakhir" id="id_goldar" class="form-control input-md">
                                                     <option value="" selected="selected">--Pilih--</option>
                                                     @foreach($pendidikans as $terakhir)
-                                                        <option value="{{$terakhir->id}}" <?=($penduduk->id_pendidikan_terakhir == $terakhir->id ? 'selected' : null)?>>{{$terakhir->deskripsi}}</option>
+                                                        <option value="{{$terakhir->id}}" <?=($terakhir->id == $penduduk->id_pendidikan_terakhir ? 'selected' : null)?>>{{$terakhir->deskripsi}}</option>
                                                     @endforeach
                                                 </select>    
                                                 @if($errors->first('id_pendidikan_terakhir'))
@@ -345,7 +346,7 @@
                                                     <select name="id_pekerjaan" id="id_goldar" class="form-control input-md">
                                                         <option value="" selected="selected">--Pilih--</option>
                                                         @foreach($pekerjaans as $pekerjaan)
-                                                        <option value="{{$pekerjaan->id}}" <?=($penduduk->id_pekerjaan == $pekerjaan->id ? 'selected' : null)?>>{{$pekerjaan->deskripsi}}</option>
+                                                        <option value="{{$pekerjaan->id}}" <?=($pekerjaan->id == $penduduk->id_pekerjaan ? 'selected' : null)?>>{{$pekerjaan->deskripsi}}</option>
                                                         @endforeach
                                                     </select>  
                                                     @if($errors->first('id_pekerjaan'))
@@ -357,7 +358,7 @@
                                                     <select name="id_pekerjaan_penduduk" id="" class="form-control input-md">
                                                         <option value="" selected="selected">--Pilih--</option>
                                                         @foreach($pekerjaanPends as $penduduks)
-                                                        <option value="{{$penduduks->id}}" <?=($penduduk->id_pekerjaan_penduduk == $penduduks->id ? 'selected' : null)?>>{{$penduduks->deskripsi}}</option>
+                                                        <option value="{{$penduduks->id}}" <?=($penduduks->id == $penduduk->id_pekerjaan_penduduk ? 'selected' : null)?>>{{$penduduks->deskripsi}}</option>
                                                         @endforeach
                                                     </select>  
                                                     @if($errors->first('id_pekerjaan_penduduk'))
@@ -370,7 +371,7 @@
                                                 <select name="id_kewarganegaraan" class="form-control">
                                                     <option value="0" selected="selected">--Pilih--</option>
                                                     @foreach($kewarganegaraan as $kewarganegara)
-                                                    <option value="{{$kewarganegara->id}}" <?=($penduduk->id_kewarganegaraan == $kewarganegara->id ? 'selected' : null)?>>{{$kewarganegara->deskripsi}}</option>
+                                                    <option value="{{$kewarganegara->id}}" <?=($kewarganegara->id == $penduduk->id_kewarganegaraan ? 'selected' : null)?>>{{$kewarganegara->deskripsi}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->first('id_kewarganegaraan'))
@@ -382,7 +383,7 @@
                                                 <select name="id_kompetensi" id="id_agama" class="form-control input-md">
                                                     <option value="" selected="selected">--Pilih--</option>
                                                     @foreach($kompetensi as $kompeten)
-                                                    <option value="{{$kompeten->id}}" <?=($penduduk->id_kompetensi == $kompeten->id ? 'selected' : null)?>>{{$kompeten->deskripsi}}</option>
+                                                    <option value="{{$kompeten->id}}" <?=($kompeten->id == $penduduk->id_kompetensi ? 'selected' : null)?>>{{$kompeten->deskripsi}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->first('id_kompetensi'))
@@ -394,7 +395,7 @@
                                                 <select name="id_status_kawin" id="id_agama" class="form-control input-md">
                                                     <option value="" selected="selected">--Pilih--</option>
                                                     @foreach($statusKawins as $statusKawin)
-                                                    <option value="{{$statusKawin->id}}" <?=($penduduk->id_status_kawin == $statusKawin->id ? 'selected' : null)?>>{{$statusKawin->deskripsi}}</option>
+                                                    <option value="{{$statusKawin->id}}" <?=($statusKawin->id == $penduduk->id_status_kawin ? 'selected' : null)?>>{{$statusKawin->deskripsi}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->first('id_status_kawin'))
@@ -406,7 +407,7 @@
                                                 <select name="id_status_penduduk" id="id_agama" class="form-control input-md">
                                                     <option value="" selected="selected">--Pilih--</option>
                                                     @foreach($statusPenduduks as $statusPenduduk)
-                                                    <option value="{{$statusPenduduk->id}}" <?=($penduduk->id_status_penduduk == $statusPenduduk->id ? 'selected' : null)?>>{{$statusPenduduk->deskripsi}}</option>
+                                                    <option value="{{$statusPenduduk->id}}" <?=($statusPenduduk->id == $penduduk->id_status_penduduk ? 'selected' : null)?>>{{$statusPenduduk->deskripsi}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->first('id_status_penduduk'))
@@ -418,7 +419,7 @@
                                                 <select name="id_status_tinggal" id="id_agama" class="form-control input-md">
                                                     <option value="" selected="selected">--Pilih--</option>
                                                     @foreach($statusTinggals as $statusTinggal)
-                                                    <option value="{{$statusTinggal->id}}" <?=($penduduk->id_status_tinggal == $statusTinggal->id ? 'selected' : null)?>>{{$statusTinggal->deskripsi}}</option>
+                                                    <option value="{{$statusTinggal->id}}" <?=($statusTinggal->id == $penduduk->id_status_tinggal ? 'selected' : null)?>>{{$statusTinggal->deskripsi}}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->first('id_status_tinggal'))
@@ -431,7 +432,7 @@
                                                     <select name="id_difabilitas" id="id_goldar" class="form-control input-md">
                                                         <option value="" selected="selected">--Pilih--</option>
                                                         @foreach($difabilitas as $difabi)
-                                                        <option value="{{$difabi->id}}" <?=($penduduk->id_difabilitas == $difabi->id ? 'selected' : null)?>>{{$difabi->deskripsi}}</option>
+                                                        <option value="{{$difabi->id}}" <?=($difabi->id == $penduduk->id_difabilitas ? 'selected' : null)?>>{{$difabi->deskripsi}}</option>
                                                         @endforeach
                                                     </select>
                                                     @if($errors->first('id_difabilitas'))
@@ -443,7 +444,7 @@
                                                     <select name="id_kontrasepsi" id="id_goldar" class="form-control input-md">
                                                         <option value="" selected="selected">--Pilih--</option>
                                                         @foreach($kontrasepsi as $kontra)
-                                                        <option value="{{$kontra->id}}" <?=($penduduk->id_kontrasepsi == $kontra->id ? 'selected' : null)?>>{{$kontra->deskripsi}}</option>
+                                                        <option value="{{$kontra->id}}" <?=($kontra->id == $penduduk->id_kontrasepsi ? 'selected' : null)?>>{{$kontra->deskripsi}}</option>
                                                         @endforeach
                                                     </select>  
                                                     @if($errors->first('id_kontrasepsi'))
@@ -452,9 +453,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Foto</label>
-                                                <br>
-                                                <img src="{{$penduduk->foto}}" style="border: 1px solid #aaa; width:250px;" class="mb-3 mt-3">
+                                                <label class="mb-3">Foto</label><br>
+                                                <img src="{{$penduduk->foto}}" style="border: 1px solid #aaa; width:150px; height:150px;" class="mb-3">
                                                 <input name="foto" type="file" class="form-control" required>
                                             </div>
                                             <div class="alert alert-primary">
@@ -465,10 +465,10 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Statu Keluarga</label>
-                                                <select name="id_status_keluarga" id="id_goldar" class="form-control input-md" readonly>
-                                                    <option value="{{$statusKeluarga->id}}" readonly>{{$statusKeluarga->deskripsi}}</option>
-                                                </select> 
+                                                <input type="text" class="form-control" placeholder="Masukan nama user"
+                                                    value="{{ $statusKeluarga->deskripsi }}" readonly>
                                             </div>
+                                            <input name="id_status_keluarga" type="hidden" class="form-control" value="{{ $statusKeluarga->id }}" readonly>
                                             <div class="form-group">
                                                 <label>Nama Ayah</label>
                                                 <input name="nama_ayah" type="text" class="form-control" placeholder="Masukan nama user"
@@ -504,8 +504,6 @@
 @endsection
 
 @section('footer')
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js">
 </script>
 
@@ -595,4 +593,4 @@ $(".tidakHamil").click(function(){
   });
  });
 </script>
-@endsection
+@endsection 

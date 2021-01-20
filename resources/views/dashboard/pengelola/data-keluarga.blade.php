@@ -68,7 +68,7 @@
                                                         <td>{{$penduduk->rt->nomor_rt}}</td>
                                                         <td>{{$penduduk->dusun->nama_dusun}}</td>
                                                         <td>
-                                                            <a href="{{url('edit-penduduk', $penduduk->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                                            <a href="{{route('dashboard.pengelola.edit-keluarga', $penduduk->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                                                             <a href="" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a>
                                                             <a href="" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                                             <a href="" class="btn btn-primary btn-sm"><i class="fa fa-print"></i></a>
