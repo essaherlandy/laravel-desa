@@ -36,7 +36,7 @@
                                         </div>
                                     </div>
                                 @endif
-                                <a href="" class="btn btn-success btn-sm mb-3"><i class="fa fa-plus"></i>Tambah Kartu Keluarga</a>
+                                <a href="{{route('dashboard.pengelola.tambah-create')}}" class="btn btn-success btn-sm mb-3"><i class="fa fa-plus"></i>Tambah Kartu Keluarga</a>
                                     <div class="alert alert-info">
                                         Menu <b>Tambah Kartu Keluarga</b> digunakan untuk membuat kartu keluarga baru menggunakan data penduduk yang telah terdaftar.          
                                     </div>

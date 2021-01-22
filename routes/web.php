@@ -255,13 +255,18 @@ Route::namespace('Pengelola')->group(function(){
         Route::get('get-rw-list','KependudukanController@getRWList');
         Route::get('get-rt-list','KependudukanController@getRTList');
         
-        /* Keluarga */
+        /* Pisah Keluarga */
         Route::get('/pisah-keluarga','KependudukanController@pisahKeluarga')->name('dashboard.pengelola.pisah-keluarga');
+        Route::get('/tambah-create','KependudukanController@tambahCreate')->name('dashboard.pengelola.tambah-create');
+        Route::post('get-pisah-kk','KependudukanController@getPisah')->name('dashboard.pengelola.get-pisah-kk');
         Route::post('/pisah-keluarga-store','KependudukanController@pisahStore')->name('dashboard.pengelola.pisah-keluarga-store');
         Route::get('/edit-pisah-keluarga/{id}','UserController@pisahEdit')->name('dashboard.pengelola.edit-pisah-keluarga');
         Route::post('/update-pisah-keluarga/{id}','KependudukanController@pisahUpdate')->name('dashboard.pengelola.pisah-keluarga-update');
         Route::get('/pisah-keluarga/delete/{id}', 'KependudukanController@pisahDelete')->name('dashboard.pengelola.pisah-keluarga-delete');
-    
+        Route::get('get-rw-list','KependudukanController@getRWList');
+        Route::get('get-rt-list','KependudukanController@getRTList');
+
+
         /*Gizi Buruk*/
         Route::get('gizi-buruk','KesehatanController@Gizi')->name('dashboard.pengelola.kesehatan.gizi-buruk');
         Route::get('gizi-buruk-create','KesehatanController@giziCreate')->name('dashboard.pengelola.kesehatan.gizi-buruk-create');
@@ -311,6 +316,15 @@ Route::namespace('Pengelola')->group(function(){
          Route::post('/update-pindah-keluar/{id}','PeristiwaController@keluarUpdate')->name('dashboard.pengelola.peristiwa.pindah-keluar-update');
          Route::get('/pindah-keluar/delete/{id}', 'PeristiwaController@keluarDelete')->name('dashboard.pengelola.peristiwa.pindah-keluar-delete');
         
+        
+        /*Perspektif Sosial Penduduk*/
+
+        /*Bantuan Sosial Penduduk*/
+        Route::get('sosial-penduduk','SosialPendudukController@sosial')->name('dashboard.pengelola.sosial.sosial-penduduk');
+
+        /*Bantuan Siswa Miskin*/
+        Route::get('siswa-miskin','SosialPendudukController@siswa')->name('dashboard.pengelola.sosial.siswa-miskin');
+        Route::get('/siswa-miskin/delete/{id}', 'SosialPendudukController@siswaDelete')->name('dashboard.pengelola.sosial.siswa-miskin-delete');
     });
 
 });

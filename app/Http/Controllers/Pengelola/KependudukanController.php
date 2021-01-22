@@ -390,4 +390,37 @@ class KependudukanController extends Controller
         $pisahKeluargas = Keluarga::paginate(10);
         return view('dashboard.pengelola.pisah-keluarga',compact('pisahKeluargas'));
     }
+
+    public function tambahCreate()
+    {   
+        $kelasSosial        = Ksosial::get();
+        $dusun              = Dusun::pluck("nama_dusun","id");
+        return view('dashboard.pengelola.tambah-create',[
+            'dusun'         => $dusun,
+            'kelasSosial'   => $kelasSosial
+        ]);
+    }
+
+    public function getPisah(Request $request)
+    {
+        $search = $request->search;
+
+        if($search == ''){
+            $penduduks = Penduduk::orderby('nik','asc')->select('id','nik','nama')->limit(5)->get();
+        }else{
+            $penduduks = Penduduk::orderby('nik','asc')->select('id','nik','nama')->where('nik', 'like', '%' .$search . '%')->limit(5)->get();
+        }
+
+        $response = array();
+        foreach($penduduks as $penduduk){
+            $response[] = array(
+                "value"=>$penduduk->id,
+                "label"=>$penduduk->nik. ' | ' .$penduduk->nama,
+                "nik"=>$penduduk->nik,
+                "nama"=>$penduduk->nama
+            );
+        }
+        return response()->json($response);
+    }
+
 }

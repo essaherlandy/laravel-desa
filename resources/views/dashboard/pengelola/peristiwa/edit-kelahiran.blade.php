@@ -106,6 +106,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="nik_nama">Pencarian Kepala Keluarga</label>  
                                         <div class="col-md-9">
+                                            <input id="id_penduduk" name="id_keluarga" type="hidden" class="form-control input-md ui-autocomplete-input" autocomplete="off" readonly>    
                                             <input id="penduduk_search" type="text" class="form-control input-md ui-autocomplete-input" autocomplete="off">
                                             <span class="help-block"></span>  
                                         </div>
@@ -191,9 +192,9 @@
                                     <div class="form-group">
                                         <label class="ml-3 control-label" for="nama">Pamong Surat Kelahiran</label>  
                                         <div class="col-md-9">
-                                            <select name="id_penduduk" class="form-control">
+                                            <select name="id_surat" class="form-control">
                                                 <option>--PILIH--</option>
-                                                <option value="{{$penduduks->id}}" <?=($penduduks->id == $kelahirans->id_penduduk ? 'selected' : null)?>>{{$penduduks->nama}} - Kepala Desa</option>
+                                                <option value="{{$penduduks->id}}" <?=($penduduks->id == $kelahirans->id_surat ? 'selected' : null)?>>{{$penduduks->nama}} - Kepala Desa</option>
                                             </select>  
                                         </div>
                                     </div>

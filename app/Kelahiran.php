@@ -23,9 +23,7 @@ class Kelahiran extends Model
         'id_keluarga',
         'nama_pelapor',
         'id_pelapor',
-        'id_penduduk',
-        'id_surat',
-        'kepala_desa'
+        'id_surat'
     ];
 
     public function jenis_kelamin(){

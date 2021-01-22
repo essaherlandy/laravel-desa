@@ -1,5 +1,20 @@
 @extends('layouts.admin')
 
+@section('styles')
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+</style>
+<style>
+#jenisK {
+  width: 100%;
+  height: 350px;
+}
+</style>
+@endsection
+
 @section('content')
 <div class="pcoded-inner-content">
     <div class="main-body">
@@ -39,7 +54,7 @@
                                                     <h5>Berdasarkan Kepala Keluarga</h5>
                                                     </div>
                                                     <div class="card-block">
-                                                        <div id="JenisK"></div>
+                                                        <div id="chartdiv"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -49,7 +64,7 @@
                                                     <h5>Berdasarkan Jenis Kelamin</h5>
                                                     </div>
                                                     <div class="card-block">
-                                                        <div id="container"></div>
+                                                        <div id="jenisK"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -69,92 +84,136 @@
 @section('footer')
 <script type="edfaf0e4e15d97d1100761e4-text/javascript" src="js/jquery.min.js"></script>
 <script type="edfaf0e4e15d97d1100761e4-text/javascript" src="js/jquery-ui.min.js"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
 
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
 <script>
-        Highcharts.chart('JenisK', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Monthly Average Rainfall'
-        },
-        subtitle: {
-            text: 'Source: WorldClimate.com'
-        },
-        xAxis: {
-            categories: [
-                'Laki-Laki',
-                'Perempuan',
-            ],
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: ''
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: ['Jenis Kelamin'],
-            data: [49.9, 71.5]
+am4core.ready(function() {
 
-        }]
-    });
-    Highcharts.chart('container', {
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
-    },
-    title: {
-        text: 'Browser market shares in January, 2018'
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    accessibility: {
-        point: {
-            valueSuffix: '%'
-        }
-    },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-            }
-        }
-    },
-    series: [{
-        name: 'Brands',
-        colorByPoint: true,
-        data: [{
-            name: 'Laki-Laki',
-            y: 61.41,
-        }, {
-            name: 'Perempuan',
-            y: 11.84
-        }]
-    }]
-});
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
 
+
+
+var chart = am4core.create('chartdiv', am4charts.XYChart)
+chart.colors.step = 2;
+
+chart.legend = new am4charts.Legend()
+chart.legend.position = 'top'
+chart.legend.paddingBottom = 20
+chart.legend.labels.template.maxWidth = 95
+
+var xAxis = chart.xAxes.push(new am4charts.CategoryAxis())
+xAxis.dataFields.category = 'category'
+xAxis.renderer.cellStartLocation = 0.1
+xAxis.renderer.cellEndLocation = 0.9
+xAxis.renderer.grid.template.location = 0;
+
+var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
+yAxis.min = 0;
+
+function createSeries(value, name) {
+    var series = chart.series.push(new am4charts.ColumnSeries())
+    series.dataFields.valueY = value
+    series.dataFields.categoryX = 'category'
+    series.name = name
+
+    series.events.on("hidden", arrangeColumns);
+    series.events.on("shown", arrangeColumns);
+
+    var bullet = series.bullets.push(new am4charts.LabelBullet())
+    bullet.interactionsEnabled = false
+    bullet.dy = 30;
+    bullet.label.text = '{valueY}'
+    bullet.label.fill = am4core.color('#ffffff')
+
+    return series;
+}
+
+chart.data = [
+    {
+        category: 'Grafik Statistik Desa Berdasarkan Kepala Keluarga',
+        first: {{$penduduk}},
+        second: 55,
+        third: 60
+    }
+]
+
+
+createSeries('first', 'Laki-Laki');
+createSeries('second', 'Perempuan');
+
+function arrangeColumns() {
+
+    var series = chart.series.getIndex(0);
+
+    var w = 1 - xAxis.renderer.cellStartLocation - (1 - xAxis.renderer.cellEndLocation);
+    if (series.dataItems.length > 1) {
+        var x0 = xAxis.getX(series.dataItems.getIndex(0), "categoryX");
+        var x1 = xAxis.getX(series.dataItems.getIndex(1), "categoryX");
+        var delta = ((x1 - x0) / chart.series.length) * w;
+        if (am4core.isNumber(delta)) {
+            var middle = chart.series.length / 2;
+
+            var newIndex = 0;
+            chart.series.each(function(series) {
+                if (!series.isHidden && !series.isHiding) {
+                    series.dummyData = newIndex;
+                    newIndex++;
+                }
+                else {
+                    series.dummyData = chart.series.indexOf(series);
+                }
+            })
+            var visibleCount = newIndex;
+            var newMiddle = visibleCount / 2;
+
+            chart.series.each(function(series) {
+                var trueIndex = chart.series.indexOf(series);
+                var newIndex = series.dummyData;
+                var dx = (newIndex - trueIndex + middle - newMiddle) * delta
+
+                series.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
+                series.bulletsContainer.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
+            })
+        }
+    }
+}
+
+}); // end am4core.ready()
 </script>
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+var chart = am4core.create("jenisK", am4charts.PieChart3D);
+chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+chart.legend = new am4charts.Legend();
+
+chart.data = [
+  {
+    country: "Laki-Laki",
+    litres: 501.9
+  },
+  {
+    country: "Perempuan",
+    litres: 301.9
+  }
+];
+
+var series = chart.series.push(new am4charts.PieSeries3D());
+series.dataFields.value = "litres";
+series.dataFields.category = "country";
+
+}); // end am4core.ready()
+</script>
+
 @endsection

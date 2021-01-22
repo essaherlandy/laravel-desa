@@ -15,16 +15,10 @@ class DashboardController extends Controller
             return view('dashboard.admin.dashboard');
         }elseif(auth()->user()->role == 'pengelola'){
             
-            $penduduk = Penduduk::orderBy('id_jenis_kelamin')->get();
-            $data = [];
+            $penduduk = Penduduk::where('id_jenis_kelamin','2')->count();
 
-            foreach($penduduk as $jk){
-                $data[] = $jk->jenis_kelamin->deskripsi;
-            }
-            
             return view('dashboard.pengelola.index',[
                 'penduduk'  => $penduduk,
-                'data'      => $data,
             ]);
         }
     }

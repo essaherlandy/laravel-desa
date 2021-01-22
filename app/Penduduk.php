@@ -38,4 +38,9 @@ class Penduduk extends Model
         return $this->belongsTo('App\Perangkat','id_penduduk');
     }
 
+    public function pendidikan()
+    {
+        return $this->belongsTo('App\Pendidikan','id_pendidikan_terakhir');
+    }
+
 }

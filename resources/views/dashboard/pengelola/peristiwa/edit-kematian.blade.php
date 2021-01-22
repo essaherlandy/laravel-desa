@@ -59,7 +59,7 @@
                                             <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-table"></i></div>
                                             </div>
-                                            <input name="tgl_meninggal" type="text" class="datepicker form-control" autocomplete="off">
+                                            <input name="tgl_meninggal" type="text" class="datepicker form-control" autocomplete="off" value="{{$kematians->tgl_meninggal}}">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -109,7 +109,7 @@
                                         <div class="col-md-9">
                                             <select name="id_surat" class="form-control">
                                                 <option>--PILIH--</option>
-                                                <option value="{{$penduduks->id}}" <?=($pel->id == $penduduks->id_penduduks ? 'selected' : null)?>>{{$penduduks->nama}} - Kepala Desa</option>
+                                                <option value="{{$penduduks->id}}" <?=($penduduks->id == $kematians->id_surat ? 'selected' : null)?>>{{$penduduks->nama}} - Kepala Desa</option>
                                             </select>  
                                         </div>
                                     </div>

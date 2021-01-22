@@ -437,7 +437,13 @@
                                             <li class="">
                                                 <a href="{{route('dashboard.pengelola.data-keluarga')}}"
                                                     class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Data KK dan Penduduk</span>
+                                                    <span class="pcoded-mtext">Data Kepala Keluarga</span>
+                                                </a>
+                                            </li>
+                                            <li class="">
+                                                <a href="{{route('dashboard.pengelola.data-keluarga')}}"
+                                                    class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Data Penduduk</span>
                                                 </a>
                                             </li>
                                             <li class="">
@@ -461,13 +467,13 @@
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class="">
-                                                <a href="{{route('dashboard.admin.logo')}}"
+                                                <a href="{{route('dashboard.pengelola.sosial.sosial-penduduk')}}"
                                                     class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Penerima Bantuan Sosial</span>
                                                 </a>
                                             </li>
                                             <li class="">
-                                                <a href="{{route('dashboard.admin.slider-beranda')}}" class="
+                                                <a href="{{route('dashboard.pengelola.sosial.siswa-miskin')}}" class="
                                                     waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Bantuan Siswa Miskin</span>
                                                 </a>

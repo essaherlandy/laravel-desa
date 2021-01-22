@@ -107,7 +107,7 @@
                                     <div class="form-group">
                                         <label class="ml-3 control-label" for="nama">Pamong Surat Kematian</label>  
                                         <div class="col-md-9">
-                                        <input type="hidden" name="kepala_desa" class="form-control" value="{{$perangkatDesa->penduduk->nama}}" readonly> 
+                                        <input type="hidden" name="id_surat" class="form-control" value="{{$perangkatDesa->penduduk->id}}" readonly> 
                                             <input type="text" class="form-control" value="{{$perangkatDesa->penduduk->nama}} - {{$jabatan->deskripsi}}" readonly>  
                                         </div>
                                     </div>
