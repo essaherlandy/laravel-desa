@@ -21,7 +21,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                            <h3>DATA PERPINDAHAN PENDUDUK MASUK</h3>
+                            <h3>DATA SURAT</h3>
                             </div>
 
                             <div class="card-block">
@@ -36,9 +36,9 @@
                                         </div>
                                     </div>
                                 @endif
-                                <a href="{{route('dashboard.pengelola.peristiwa.pindah-masuk-create')}}" class="btn btn-primary btn-sm mb-3"><i class="fa fa-plus"></i> Tambah Data</a>
+                                <a href="{{route('dashboard.pengelola.surat.surat-create')}}" class="btn btn-primary btn-sm mb-3"><i class="fa fa-plus"></i> Tambah Data</a>
                                     <div id="row-select_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                        @if(count($pindahMasuk) > 0)
+                                        @if(count($surats) > 0)
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12">
                                                 <table id="row-select"
@@ -47,51 +47,45 @@
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
-                                                            <th>Tanggal Pindah Masuk</th>
-                                                            <th>No Kepala Keluarga</th>
-                                                            <th>Desa Tujuan</th>
-                                                            <th>Dusun Tujuan</th>
-                                                            <th>RW Tujuan</th>
-                                                            <th>RT Tujuan</th>
-                                                            <th>Jenis Pindah</th>
-                                                            <th>Klasifikasi Pindah</th>
-                                                            <th>Alasan Pindah</th>
+                                                            <th>Nomor Surat</th>
+                                                            <th>Judul Surat</th>
+                                                            <th>Tgl Awal Berlaku</th>
+                                                            <th>Tgl Akhir Berlaku</th>
+                                                            <th>Keperluan</th>
+                                                            <th>Kategori Surat</th>
                                                             <th>Aksi</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                     <tbody>
                                                     <?php $no=1;?>
-                                                    @foreach($pindahMasuk as $index => $masuk)
+                                                    @foreach($surats as $index => $surat)
                                                     <tr>
-                                                        <td>{{$index + $pindahMasuk->firstItem()}}</td>
-                                                        <td>{{$masuk->nama_bayi}}</td>
-                                                        <td>{{$masuk->jenis_kelamin->deskripsi}}</td>
-                                                        <td>{{\Carbon\Carbon::parse($masuk->tgl_masuk)->format('d-m-Y')}}</td>
-                                                        <td>{{$masuk->berat_bayi}} kg</td>
-                                                        <td>{{$masuk->panjang_bayi}} cm</td>
-                                                        <td>{{$masuk->nama_ayah}}</td>
-                                                        <td>{{$masuk->nama_ibu}}</td>
-                                                        <td>{{$masuk->is_kembar}}</td>
-                                                        <td>{{$masuk->tempat_lahir}}</td>
-                                                        <td>{{$masuk->penolong}}</td>
+                                                        <td>{{$index + $surats->firstItem()}}</td>
+                                                        <td>{{$surat->nomor_surat}}</td>
+                                                        <td>{{$surat->judul_surat}}</td>
+                                                        <td>{{\Carbon\Carbon::parse($surat->tanggal_awal)->format('d-m-Y')}}</td>
+                                                        <td>{{\Carbon\Carbon::parse($surat->tanggal_akhir)->format('d-m-Y')}}</td>
+                                                        <td>{{$surat->keterangan}}</td>
+                                                        <td>{{$surat->kode->deskripsi}}</td>
                                                         <td>
-                                                        <a href="{{url('edit-pindah-masuk', $masuk->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>   
+                                                        <a href="{{url('edit-pindah-surat', $surat->id)}}" class="btn btn-warning btn-sm mb-1"><i class="fa fa-edit"></i></a>   
+                                                        <a href="{{route('dashboard.pengelola.surat.cetak-pdf', $surat->id)}}" class="btn btn-primary btn-sm mb-1" target="_blank"><i class="fa fa-print"></i></a>   
                                                         <a class="btn btn-danger btn-sm text-white mb-3"
-                                                            data-toggle="modal" data-target="#hapusmasuk{{$masuk->id}}"> <i class="fa fa-trash"></i></a>
+                                                            data-toggle="modal" data-target="#hapussurat{{$surat->id}}"> <i class="fa fa-trash"></i></a>
                                                         <!-- Modal -->
-                                                            <div class="modal fade" id="hapusmasuk{{$masuk->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                            <div class="modal fade" id="hapussurat{{$surat->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                                 aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">Hapus Data Peristiwa masuk</h5>
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Hapus Data Peristiwa surat</h5>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form action="{{route('dashboard.pengelola.peristiwa.pindah-masuk-delete',$masuk->id)}}" method="GET" enctype="multipart/form-data">
+                                                                            <form action="{{route('dashboard.pengelola.surat.surat-delete',$surat->id)}}" method="GET" enctype="multipart/form-data">
                                                                                 {{csrf_field()}}
                                                                                 <div class="text-center">
                                                                                     <h4><strong>Apakah anda yakin ingin menghapus item ini??</strong></h4>
@@ -111,8 +105,8 @@
                                                     @endforeach
                                                     </tbody>
                                                 </table>
-                                                <a>Total Keseluruhan: <b>{{ $pindahMasuk->total() }}</b></a>
-                                                {{$pindahMasuk->appends(request()->query())->links()}}
+                                                <a>Total Keseluruhan: <b>{{ $surats->total() }}</b></a>
+                                                {{$surats->appends(request()->query())->links()}}
                                             </div>
                                         </div>
                                         @else

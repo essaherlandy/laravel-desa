@@ -540,7 +540,7 @@
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class=" ">
-                                        <a href="foo-table.html" class="waves-effect waves-dark">
+                                        <a href="{{route('dashboard.pengelola.surat.index')}}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="fa fa-envelope"></i>
                                             </span>

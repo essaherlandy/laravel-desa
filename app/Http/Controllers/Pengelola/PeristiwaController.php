@@ -3,14 +3,22 @@
 namespace App\Http\Controllers\Pengelola;
 
 
-use App\Perangkat;
-use App\Meninggal;
-use App\JenisKelamin;
+use App\AlasanPindah;
+use App\Desa;
+use App\Dusun;
 use App\Jabatan;
+use App\JenisKelamin;
+use App\JenisPindah;
+use App\Kelahiran;
+use App\KlarifikasiPindah;
+use App\Meninggal;
 use App\Penduduk;
+use App\Perangkat;
 use App\Pelapor;
 use App\PindahMasuk;
-use App\Kelahiran;
+use App\PindahKeluar;
+use App\RW;
+use App\RT;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -207,5 +215,41 @@ class PeristiwaController extends Controller
     {
         $pindahMasuk = PindahMasuk::paginate(10);
         return view('dashboard.pengelola.peristiwa.pindah-masuk',compact('pindahMasuk'));
+    }
+
+    public function masukCreate(Request $request)
+    {
+        $jenisPindah        = JenisPindah::get();
+        $klasifikasiPindah  = KlarifikasiPindah::get();
+        $alasanPindah       = AlasanPindah::get();
+        $desa               = Desa::get();
+        $dusun              = Dusun::pluck("nama_dusun","id");
+        return view('dashboard.pengelola.peristiwa.pindah-masuk-create',[
+            'dusun'             => $dusun,
+            'desa'              => $desa,
+            'jenisPindah'       => $jenisPindah,
+            'klasifikasiPindah' => $klasifikasiPindah,
+            'alasanPindah'      => $alasanPindah
+        ]);
+    }
+
+    public function getRWList(Request $request)
+    {
+        $rw = RW::where("id_dusun",$request->id_dusun)
+        ->pluck("nomor_rw","id");
+        return response()->json($rw);
+    }
+
+    public function getRTList(Request $request)
+    {
+        $rt = RT::where("id_rw",$request->id_rw)
+        ->pluck("nomor_rt","id");
+        return response()->json($rt);
+    }
+
+    public function keluar()
+    {
+        $pindahKeluar = PindahKeluar::paginate(10);
+        return view('dashboard.pengelola.peristiwa.pindah-keluar',compact('pindahKeluar'));
     }
 }
