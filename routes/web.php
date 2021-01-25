@@ -301,22 +301,34 @@ Route::namespace('Pengelola')->group(function(){
         Route::post('/update-kematian/{id}','PeristiwaController@kematianUpdate')->name('dashboard.pengelola.peristiwa.kematian-update');
         Route::get('/kematian/delete/{id}', 'PeristiwaController@kematianDelete')->name('dashboard.pengelola.peristiwa.kematian-delete');
 
-         /*Peristiwa Pindah Masuk*/
-         Route::get('pindah-masuk','PeristiwaController@masuk')->name('dashboard.pengelola.peristiwa.pindah-masuk');
-         Route::get('pindah-masuk-create','PeristiwaController@masukCreate')->name('dashboard.pengelola.peristiwa.pindah-masuk-create');
-         Route::post('pindah-masuk-store','PeristiwaController@masukStore')->name('dashboard.pengelola.peristiwa.pindah-masuk-store');
-         Route::post('/update-pindah-masuk/{id}','PeristiwaController@masukUpdate')->name('dashboard.pengelola.peristiwa.pindah-masuk-update');
-         Route::get('/pindah-masuk/delete/{id}', 'PeristiwaController@masukDelete')->name('dashboard.pengelola.peristiwa.pindah-masuk-delete');
-    
-         /*Peristiwa Pindah keluar*/
-         Route::get('pindah-keluar','PeristiwaController@keluar')->name('dashboard.pengelola.peristiwa.pindah-keluar');
-         Route::get('pindah-keluar-create','PeristiwaController@keluarCreate')->name('dashboard.pengelola.peristiwa.pindah-keluar-create');
-         Route::post('get-pindah-keluar','PeristiwaController@getKeluar')->name('dashboard.pengelola.peristiwa.get-pindah-keluar');
-         Route::post('pindah-keluar-store','PeristiwaController@keluarStore')->name('dashboard.pengelola.peristiwa.pindah-keluar-store');
-         Route::post('/update-pindah-keluar/{id}','PeristiwaController@keluarUpdate')->name('dashboard.pengelola.peristiwa.pindah-keluar-update');
-         Route::get('/pindah-keluar/delete/{id}', 'PeristiwaController@keluarDelete')->name('dashboard.pengelola.peristiwa.pindah-keluar-delete');
+        /*Peristiwa Pindah Masuk*/
+        Route::get('pindah-masuk','PeristiwaController@masuk')->name('dashboard.pengelola.peristiwa.pindah-masuk');
+        Route::get('pindah-masuk-create','PeristiwaController@masukCreate')->name('dashboard.pengelola.peristiwa.pindah-masuk-create');
+        Route::post('pindah-masuk-store','PeristiwaController@masukStore')->name('dashboard.pengelola.peristiwa.pindah-masuk-store');
+        Route::post('/update-pindah-masuk/{id}','PeristiwaController@masukUpdate')->name('dashboard.pengelola.peristiwa.pindah-masuk-update');
+        Route::get('/pindah-masuk/delete/{id}', 'PeristiwaController@masukDelete')->name('dashboard.pengelola.peristiwa.pindah-masuk-delete');
+        Route::get('get-rw-list','PeristiwaController@getRWList');
+        Route::get('get-rt-list','PeristiwaController@getRTList');
+
+
+        /*Peristiwa Pindah keluar*/
+        Route::get('pindah-keluar','PeristiwaController@keluar')->name('dashboard.pengelola.peristiwa.pindah-keluar');
+        Route::get('pindah-keluar-create','PeristiwaController@keluarCreate')->name('dashboard.pengelola.peristiwa.pindah-keluar-create');
+        Route::post('get-pindah-keluar','PeristiwaController@getKeluar')->name('dashboard.pengelola.peristiwa.get-pindah-keluar');
+        Route::post('pindah-keluar-store','PeristiwaController@keluarStore')->name('dashboard.pengelola.peristiwa.pindah-keluar-store');
+        Route::post('/update-pindah-keluar/{id}','PeristiwaController@keluarUpdate')->name('dashboard.pengelola.peristiwa.pindah-keluar-update');
+        Route::get('/pindah-keluar/delete/{id}', 'PeristiwaController@keluarDelete')->name('dashboard.pengelola.peristiwa.pindah-keluar-delete');
         
-        
+        /*Surat*/
+        Route::get('surat','SuratController@index')->name('dashboard.pengelola.surat.index');
+        Route::get('surat-create','SuratController@create')->name('dashboard.pengelola.surat.surat-create');
+        Route::post('surat-store','SuratController@store')->name('dashboard.pengelola.surat.surat-store');
+        Route::post('get-surat','SuratController@getSurat')->name('dashboard.pengelola.surat.get-surat');
+        Route::get('/cetak-pdf/{id}', 'SuratController@cetakPdf')->name('dashboard.pengelola.surat.cetak-pdf');;
+        Route::get('/edit-surat/{id}','SuratController@edit')->name('dashboard.pengelola.surat.edit-surat');
+        Route::post('/update-surat/{id}','SuratController@update')->name('dashboard.pengelola.surat.surat-update');
+        Route::get('/surat/delete/{id}', 'SuratController@delete')->name('dashboard.pengelola.surat.surat-delete');
+
         /*Perspektif Sosial Penduduk*/
 
         /*Bantuan Sosial Penduduk*/
@@ -325,6 +337,9 @@ Route::namespace('Pengelola')->group(function(){
         /*Bantuan Siswa Miskin*/
         Route::get('siswa-miskin','SosialPendudukController@siswa')->name('dashboard.pengelola.sosial.siswa-miskin');
         Route::get('/siswa-miskin/delete/{id}', 'SosialPendudukController@siswaDelete')->name('dashboard.pengelola.sosial.siswa-miskin-delete');
+
+        /*Pencarian Pintar*/
+        Route::get('pencarian','PencarianController@index')->name('dashboard.pengelola.pencarian.index');
     });
 
 });

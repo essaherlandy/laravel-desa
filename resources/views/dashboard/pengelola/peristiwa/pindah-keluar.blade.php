@@ -21,7 +21,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                            <h3>DATA PERPINDAHAN PENDUDUK MASUK</h3>
+                            <h3>DATA PERPINDAHAN PENDUDUK KELUAR</h3>
                             </div>
 
                             <div class="card-block">
@@ -36,9 +36,9 @@
                                         </div>
                                     </div>
                                 @endif
-                                <a href="{{route('dashboard.pengelola.peristiwa.pindah-masuk-create')}}" class="btn btn-primary btn-sm mb-3"><i class="fa fa-plus"></i> Tambah Data</a>
+                                <a href="{{route('dashboard.pengelola.peristiwa.pindah-keluar-create')}}" class="btn btn-primary btn-sm mb-3"><i class="fa fa-plus"></i> Tambah Data</a>
                                     <div id="row-select_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                        @if(count($pindahMasuk) > 0)
+                                        @if(count($pindahKeluar) > 0)
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12">
                                                 <table id="row-select"
@@ -47,7 +47,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
-                                                            <th>Tanggal Pindah Masuk</th>
+                                                            <th>Tanggal Pindah Keluar</th>
                                                             <th>No Kepala Keluarga</th>
                                                             <th>Desa Tujuan</th>
                                                             <th>Dusun Tujuan</th>
@@ -62,36 +62,36 @@
                                                     <tbody>
                                                     <tbody>
                                                     <?php $no=1;?>
-                                                    @foreach($pindahMasuk as $index => $masuk)
+                                                    @foreach($pindahKeluar as $index => $keluar)
                                                     <tr>
-                                                        <td>{{$index + $pindahMasuk->firstItem()}}</td>
-                                                        <td>{{$masuk->nama_bayi}}</td>
-                                                        <td>{{$masuk->jenis_kelamin->deskripsi}}</td>
-                                                        <td>{{\Carbon\Carbon::parse($masuk->tgl_masuk)->format('d-m-Y')}}</td>
-                                                        <td>{{$masuk->berat_bayi}} kg</td>
-                                                        <td>{{$masuk->panjang_bayi}} cm</td>
-                                                        <td>{{$masuk->nama_ayah}}</td>
-                                                        <td>{{$masuk->nama_ibu}}</td>
-                                                        <td>{{$masuk->is_kembar}}</td>
-                                                        <td>{{$masuk->tempat_lahir}}</td>
-                                                        <td>{{$masuk->penolong}}</td>
+                                                        <td>{{$index + $pindahKeluar->firstItem()}}</td>
+                                                        <td>{{$keluar->nama_bayi}}</td>
+                                                        <td>{{$keluar->jenis_kelamin->deskripsi}}</td>
+                                                        <td>{{\Carbon\Carbon::parse($keluar->tgl_keluar)->format('d-m-Y')}}</td>
+                                                        <td>{{$keluar->berat_bayi}} kg</td>
+                                                        <td>{{$keluar->panjang_bayi}} cm</td>
+                                                        <td>{{$keluar->nama_ayah}}</td>
+                                                        <td>{{$keluar->nama_ibu}}</td>
+                                                        <td>{{$keluar->is_kembar}}</td>
+                                                        <td>{{$keluar->tempat_lahir}}</td>
+                                                        <td>{{$keluar->penolong}}</td>
                                                         <td>
-                                                        <a href="{{url('edit-pindah-masuk', $masuk->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>   
+                                                        <a href="{{url('edit-pindah-keluar', $keluar->id)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>   
                                                         <a class="btn btn-danger btn-sm text-white mb-3"
-                                                            data-toggle="modal" data-target="#hapusmasuk{{$masuk->id}}"> <i class="fa fa-trash"></i></a>
+                                                            data-toggle="modal" data-target="#hapuskeluar{{$keluar->id}}"> <i class="fa fa-trash"></i></a>
                                                         <!-- Modal -->
-                                                            <div class="modal fade" id="hapusmasuk{{$masuk->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                            <div class="modal fade" id="hapuskeluar{{$keluar->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                                 aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">Hapus Data Peristiwa masuk</h5>
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Hapus Data Peristiwa keluar</h5>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form action="{{route('dashboard.pengelola.peristiwa.pindah-masuk-delete',$masuk->id)}}" method="GET" enctype="multipart/form-data">
+                                                                            <form action="{{route('dashboard.pengelola.peristiwa.pindah-keluar-delete',$keluar->id)}}" method="GET" enctype="multipart/form-data">
                                                                                 {{csrf_field()}}
                                                                                 <div class="text-center">
                                                                                     <h4><strong>Apakah anda yakin ingin menghapus item ini??</strong></h4>
@@ -111,8 +111,8 @@
                                                     @endforeach
                                                     </tbody>
                                                 </table>
-                                                <a>Total Keseluruhan: <b>{{ $pindahMasuk->total() }}</b></a>
-                                                {{$pindahMasuk->appends(request()->query())->links()}}
+                                                <a>Total Keseluruhan: <b>{{ $pindahKeluar->total() }}</b></a>
+                                                {{$pindahKeluar->appends(request()->query())->links()}}
                                             </div>
                                         </div>
                                         @else
