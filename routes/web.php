@@ -337,6 +337,9 @@ Route::namespace('Pengelola')->group(function(){
         /*Bantuan Siswa Miskin*/
         Route::get('siswa-miskin','SosialPendudukController@siswa')->name('dashboard.pengelola.sosial.siswa-miskin');
         Route::get('/siswa-miskin/delete/{id}', 'SosialPendudukController@siswaDelete')->name('dashboard.pengelola.sosial.siswa-miskin-delete');
+
+        /*Pencarian Pintar*/
+        Route::get('pencarian','PencarianController@index')->name('dashboard.pengelola.pencarian.index');
     });
 
 });
