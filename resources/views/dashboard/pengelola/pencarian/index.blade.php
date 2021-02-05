@@ -35,6 +35,9 @@
                                             <div class="col-md-11">
                                                 <select id="id_dusun" name="id_dusun" class="form-control">
                                                     <option value="" selected disabled>Select</option>
+                                                    @foreach($jenisKelamin as $jk)
+                                                        <option value="{{$jk->id}}" {{ old('id_kelas_sosial') == $jk->id ? 'selected' : '' }}>{{$jk->deskripsi}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -55,9 +58,7 @@
                                         <div class="col">
                                             <label class="col-md-5" for="">Tempat Lahir</label>
                                             <div class="col-md-11">
-                                                <select id="id_dusun" name="id_dusun" class="form-control">
-                                                    <option value="" selected disabled>Select</option>
-                                                </select>
+                                            <input name="deskripsi" type="text" class="form-control" value="{{ old('deskripsi') }}" placeholder="dekripsi">
                                             </div>
                                         </div>
                                         <div class="col-sm-4 mt-5">
